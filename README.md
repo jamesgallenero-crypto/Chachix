@@ -220,3 +220,53 @@ When the customer selects Buy Now:
 Purchase history, notifications, and delivery tracking are not yet connected to live order records.
 
 ---
+## 📊 Application Flowchart
+
+mermaid
+flowchart TD
+    A[Launch ChaChix] --> B[Login Screen]
+    B --> C{Registered User?}
+
+    C -->|No| D[Create Account]
+    D --> E[Enter Personal and Address Details]
+    E --> F[Firebase Authentication]
+    F --> G[Save Profile to Cloud Firestore]
+    G --> B
+
+    C -->|Yes| H[Enter Email and Password]
+    H --> I{Authentication Successful?}
+
+    I -->|No| B
+    I -->|Yes| J[Home Dashboard]
+
+    J --> K[Perfume Catalog]
+    J --> L[Profile]
+    J --> M[Shopping Cart]
+
+    K --> N[Select Perfume]
+    N --> O[View Product and Choose Size]
+    O --> P{Purchase Action}
+
+    P -->|Add to Cart| Q[Save Product in SharedPreferences]
+    Q --> M
+
+    M --> R[Manage Products and Quantity]
+    R --> S[Review Cart]
+    S --> T[Cart Review Dialog]
+
+    P -->|Buy Now| U[Payment Screen]
+    U --> V[Load Delivery Information]
+    V --> W[Calculate Total]
+    W --> X[Select Payment Method]
+    X --> Y[Place Order Button]
+    Y --> Z[Order Review Preview]
+
+    L --> AA[Wishlist]
+    AA --> N
+
+    L --> AB[Settings]
+    AB --> AC{Account Action}
+    AC -->|Password| AD[Reset Password]
+    AC -->|Profile| AE[Profile Settings]
+    AC -->|Logout| AF[Firebase Sign Out]
+    AF --> B
