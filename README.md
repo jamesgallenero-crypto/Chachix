@@ -491,3 +491,86 @@ These are checkout UI options and demonstration flows.
 - No transaction tracking.
 
 A secure payment gateway and order-management backend are planned for future development.
+
+## 🏗️ Integration Architecture
+
+mermaid
+flowchart TD
+    A[ChaChix Android Application] --> B[Java and XML UI]
+
+    B --> C[Firebase Authentication]
+    B --> D[Cloud Firestore]
+    B --> E[SharedPreferences]
+    B --> F[CameraX]
+
+    C --> G[Login and Registration]
+    D --> H[Customer Profiles and Addresses]
+    E --> I[Shopping Cart]
+    F --> J[ML Kit Text Recognition]
+
+    B --> K[Checkout Preview]
+    K -. Future Integration .-> L[Payment Gateway]
+    K -. Future Integration .-> M[Order Management Backend]
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| Java | Application logic |
+| XML | UI layout and design |
+| Android Studio | Development environment |
+| AndroidX | Android application components |
+| Material Components | UI components |
+| Firebase Authentication | User authentication |
+| Cloud Firestore | Customer profile database |
+| CameraX | Camera functionality |
+| Google ML Kit | Text recognition |
+| SharedPreferences | Local cart storage |
+| Gradle | Dependency and build management |
+
+---
+
+## 📂 Project Structure
+
+text
+Chachix/
+│
+├── app/
+│   ├── build.gradle.kts
+│   ├── google-services.json
+│   │
+│   └── src/
+│       └── main/
+│           ├── AndroidManifest.xml
+│           │
+│           ├── java/com/example/chachix/
+│           │   ├── MainActivity.java
+│           │   ├── Register.java
+│           │   ├── Dashboard.java
+│           │   ├── activity_perfumes.java
+│           │   ├── Profile.java
+│           │   ├── setting.java
+│           │   ├── cart.java
+│           │   ├── payment.java
+│           │   ├── CardScannerActivity.java
+│           │   ├── product1.java
+│           │   ├── product2.java
+│           │   ├── product3.java
+│           │   ├── product4.java
+│           │   └── product5.java
+│           │
+│           └── res/
+│               ├── drawable/
+│               ├── layout/
+│               ├── values/
+│               └── xml/
+│
+├── gradle/
+├── build.gradle.kts
+├── settings.gradle.kts
+├── gradlew
+└── gradlew.bat
+
+---
