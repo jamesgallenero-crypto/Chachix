@@ -670,3 +670,54 @@ The experimental OCR scanner is intended for testing and demonstration, not prod
 | Card Scanner | Experimental OCR scanning |
 
 Screenshots of each screen can be added to the repository under docs/screenshots/.
+
+---
+
+## 🚀 Future Improvements
+
+- [ ] Implement real order submission.
+- [ ] Add order history.
+- [ ] Connect delivery tracking.
+- [ ] Integrate a secure payment gateway.
+- [ ] Add real GCash payment processing.
+- [ ] Implement confirmed payment statuses.
+- [ ] Connect customer notifications.
+- [ ] Add product ratings and reviews.
+- [ ] Manage products and prices from a database.
+- [ ] Improve wishlist synchronization.
+- [ ] Implement perfume-bar booking.
+- [ ] Add automated testing.
+- [ ] Optimize CameraX dependencies.
+- [ ] Improve application security and accessibility.
+
+---
+
+## 📌 Project Status
+
+*ChaChix Scents is currently under development.*
+
+The application includes Firebase-backed authentication, customer profiles, perfume browsing, local shopping-cart management, checkout previews, and experimental OCR functionality.
+
+Real transactions, order history, live payments, and delivery tracking remain future features.
+
+---
+
+## 👨‍💻 Developer
+
+*GitHub:* [jamesgallenero-crypto](https://github.com/jamesgallenero-crypto)
+
+*Repository:* [ChaChix](https://github.com/jamesgallenero-crypto/Chachix)
+
+*Project:* ChaChix Scents Android Application
+
+---
+
+<div align="center">
+
+### 🌸 ChaChix Scents PH
+
+*Leave a trace they'll remember.*
+
+Made with ❤️ using Java, XML, and Firebase.
+
+</div>
