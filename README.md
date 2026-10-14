@@ -574,3 +574,67 @@ Chachix/
 └── gradlew.bat
 
 ---
+
+## ⚙️ Installation and Setup
+
+### Requirements
+
+Before running the project, install:
+
+- Android Studio
+- Android SDK
+- Compatible JDK and Gradle tooling
+- Android 8.1 (API 27) or newer device/emulator
+- Firebase project with Authentication and Firestore enabled
+
+### Step 1: Clone the Repository
+
+git clone https://github.com/jamesgallenero-crypto/Chachix.git
+### Step 2: Open the Project
+
+1. Launch Android Studio.
+2. Select *Open*.
+3. Choose the cloned Chachix directory.
+4. Wait for Gradle synchronization.
+
+### Step 3: Configure Firebase
+
+1. Open https://console.firebase.google.com/
+2. Create or select a Firebase project.
+3. Register the Android application with the package name:
+
+   com.example.chachix
+
+4. Download the Firebase google-services.json.
+5. Place it inside the app/ directory.
+6. Enable Email/Password authentication.
+7. Configure Cloud Firestore.
+8. Configure appropriate Firestore Security Rules.
+
+### Step 4: Build the Application
+
+Open Android Studio and run the application using a compatible Android device or emulator.
+
+Alternatively, use Gradle.
+
+*Windows:*
+
+.\gradlew.bat assembleDebug
+
+*macOS / Linux:*
+
+./gradlew assembleDebug
+
+### Step 5: Test the Application
+
+1. Register a customer account.
+2. Log in using the registered email.
+3. Browse perfume products.
+4. Open a product details page.
+5. Add an item to the cart.
+6. Change cart quantities.
+7. Test Buy Now.
+8. Review payment options.
+9. Test Profile and Settings.
+
+Test the card scanner only with fictional sample card information.
