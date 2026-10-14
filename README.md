@@ -403,3 +403,91 @@ implementation("androidx.camera:camera-core:1.6.2")
 implementation("androidx.camera:camera-camera2:1.6.2")
 implementation("androidx.camera:camera-lifecycle:1.6.2")
 implementation("androidx.camera:camera-view:1.6.2")
+
+These show one consistent CameraX version for illustration. The repository currently contains both 1.5.3 and 1.6.2 CameraX declarations, which should be consolidated.
+
+*Documentation:*  
+https://developer.android.com/media/camera/camerax
+
+### 4. Google ML Kit Text Recognition
+
+*Provider:* Google ML Kit
+
+Google ML Kit provides on-device text recognition for the experimental card scanner.
+
+The scanner processes camera frames and attempts to recognize text from a visible card.
+
+*Features:*
+- Text detection from camera frames.
+- Text extraction.
+- Card-number candidate identification.
+- Detected information preview.
+
+*Dependency:*
+
+implementation(
+    "com.google.mlkit:text-recognition:16.0.1"
+)
+
+*Integration example:*
+
+TextRecognizer recognizer =
+    TextRecognition.getClient(
+        TextRecognizerOptions.DEFAULT_OPTIONS
+    );
+
+*Scanner flow:*
+
+mermaid
+flowchart TD
+    A[Open Card Scanner] --> B[Request Camera Permission]
+    B --> C[CameraX Preview]
+    C --> D[Camera Frame Analysis]
+    D --> E[Google ML Kit OCR]
+    E --> F[Extract Text]
+    F --> G[Validate Candidate Card Number]
+    G --> H[Review Detected Details]
+
+*Documentation:*  
+https://developers.google.com/ml-kit/vision/text-recognition/v2/android
+
+*Important:* This scanner is experimental and is not a secure payment-processing system. Real payment-card details should not be used for testing. Production payment collection should use a secure, compliant payment provider.
+
+### 5. SharedPreferences
+
+The shopping cart uses Android SharedPreferences for local data storage.
+
+*Purpose:*
+- Save selected products.
+- Store quantities and variants.
+- Restore cart data.
+- Support cart updates.
+
+*Example:*
+
+SharedPreferences preferences =
+    getSharedPreferences(
+        "chachix_cart",
+        MODE_PRIVATE
+    );
+
+This information is stored locally on the device and is not automatically synchronized through Firebase.
+
+### 6. Payment Gateway Integration
+
+The application currently displays the following payment choices:
+
+- Cash on Delivery
+- Credit/Debit Card
+- GCash
+
+These are checkout UI options and demonstration flows.
+
+*Current limitations:*
+- No live GCash transaction API.
+- No connected credit-card payment processor.
+- No confirmed order creation.
+- No payment webhooks.
+- No transaction tracking.
+
+A secure payment gateway and order-management backend are planned for future development.
