@@ -638,3 +638,35 @@ Alternatively, use Gradle.
 9. Test Profile and Settings.
 
 Test the card scanner only with fictional sample card information.
+## 🔐 Security and Privacy
+
+ChaChix uses Firebase Authentication and Cloud Firestore for customer account information.
+
+Important security considerations:
+
+- Configure Firestore Security Rules to restrict unauthorized access.
+- Never commit Firebase service-account private keys.
+- Protect customer personal information.
+- Do not store real payment-card numbers.
+- Use a compliant payment provider for actual card processing.
+- Avoid committing passwords, payment secrets, or real customer data.
+
+The experimental OCR scanner is intended for testing and demonstration, not production payment collection.
+
+---
+## 📱 Application Screens
+
+| Screen | Purpose |
+|---|---|
+| Login | Customer authentication |
+| Registration | Account creation |
+| Dashboard | Featured perfumes and navigation |
+| Perfumes Catalog | Product browsing |
+| Product Details | Product information and size selection |
+| Shopping Cart | Cart management |
+| Checkout | Delivery and payment preview |
+| Profile | Customer details and wishlist |
+| Settings | Account management |
+| Card Scanner | Experimental OCR scanning |
+
+Screenshots of each screen can be added to the repository under docs/screenshots/.
