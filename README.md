@@ -270,3 +270,136 @@ flowchart TD
     AC -->|Profile| AE[Profile Settings]
     AC -->|Logout| AF[Firebase Sign Out]
     AF --> B
+
+
+
+The current checkout flows end at review dialogs. Successful order submission and real payment processing are planned features.
+
+---
+
+## 🔌 APIs, SDKs, and Integrations
+
+ChaChix Scents uses Firebase service SDKs and Android libraries to support account management, customer information, camera access, and text recognition.
+
+The application currently has four primary integrations.
+
+| Integration | Technology | Purpose | Status |
+|---|---|---|---|
+| 1 | Firebase Authentication | Login, registration, logout, password recovery | Connected |
+| 2 | Cloud Firestore | Customer information and delivery address | Connected |
+| 3 | Android CameraX | Camera preview and image analysis | Integrated |
+| 4 | Google ML Kit Text Recognition | Recognition of text visible to the camera | Integrated |
+
+CameraX and ML Kit are Android SDK integrations rather than independently hosted REST APIs.
+
+### 1. Firebase Authentication
+
+*Provider:* Google Firebase
+
+Firebase Authentication manages customer authentication and account access.
+
+*Functions:*
+- Register customers.
+- Authenticate registered accounts.
+- Send password-reset emails.
+- Manage authenticated sessions.
+- Logout.
+
+*Integration example:*
+
+FirebaseAuth auth = FirebaseAuth.getInstance();
+
+auth.createUserWithEmailAndPassword(email, password);
+
+auth.signInWithEmailAndPassword(email, password);
+
+auth.sendPasswordResetEmail(email);
+
+auth.signOut();
+
+*Authentication flow:*
+
+mermaid
+flowchart TD
+    A[User Credentials] --> B[Firebase Authentication]
+    B --> C{Authentication Successful?}
+    C -->|Yes| D[Home Dashboard]
+    C -->|No| E[Show Error Message]
+
+*Documentation:*  
+https://firebase.google.com/docs/auth/android/start
+
+### 2. Cloud Firestore
+
+*Provider:* Google Firebase
+
+Cloud Firestore stores and retrieves registered customer information.
+
+*Data managed:*
+- Full name
+- Email address
+- Phone number
+- Delivery street
+- Province
+- City
+- ZIP code
+- Registration timestamp
+
+*Example customer document:*
+
+text
+users/
+  {userUid}/
+    fullName
+    email
+    phone
+    address/
+      street
+      province
+      city
+      zipCode
+    termsAccepted
+    createdAt
+
+*Integration example:*
+
+FirebaseFirestore database =
+    FirebaseFirestore.getInstance();
+
+database.collection("users")
+    .document(pendingUid)
+    .set(pendingProfile);
+
+*Firestore flow:*
+
+mermaid
+flowchart TD
+    A[Customer Registration] --> B[Create Firebase Account]
+    B --> C[Save Profile to Cloud Firestore]
+    C --> D[users Collection]
+    D --> E[Customer UID Document]
+    E --> F[Dashboard and Profile]
+    E --> G[Delivery Information]
+
+*Documentation:*  
+https://firebase.google.com/docs/firestore/quickstart
+
+### 3. Android CameraX
+
+*Provider:* Android Jetpack
+
+CameraX is used to access the Android device camera.
+
+*Features:*
+- Live camera preview.
+- Camera permission handling.
+- Rear-camera access.
+- Image-analysis pipeline.
+- Integration with ML Kit.
+
+*Libraries used:*
+
+implementation("androidx.camera:camera-core:1.6.2")
+implementation("androidx.camera:camera-camera2:1.6.2")
+implementation("androidx.camera:camera-lifecycle:1.6.2")
+implementation("androidx.camera:camera-view:1.6.2")
