@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chachix_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="30dp">
+
+            <!-- Logo -->
+            <RelativeLayout
+                android:id="@+id/register_header"
+                android:layout_width="match_parent"
+                android:layout_height="140dp">
+
+                <TextView
+                    android:id="@+id/register_brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="38dp"
+                    android:fontFamily="serif"
+                    android:includeFontPadding="false"
+                    android:shadowColor="#B8B5A3"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="1"
+                    android:text="ChaChix"
+                    android:textColor="#FFFFFF"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/register_brand"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="serif"
+                    android:includeFontPadding="false"
+                    android:shadowColor="#B8B5A3"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="1"
+                    android:text="Scents"
+                    android:textColor="#FFFFFF"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <!-- Account details -->
+            <RelativeLayout
+                android:id="@+id/account_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/register_header"
+                android:background="@drawable/chachix_card"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/register_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/register_title_background"
+                    android:gravity="center"
+                    android:text="CREATE NEW ACCOUNT"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Full name and email -->
+                <RelativeLayout
+                    android:id="@+id/name_email_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/register_title"
+                    android:layout_marginTop="16dp">
+
+                    <View
+                        android:id="@+id/name_column_center"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@id/name_column_center">
+
+                        <TextView
+                            android:id="@+id/full_name_label"
+                            style="@style/RegisterLabel"
+                            android:labelFor="@id/full_name"
+                            android:text="Full Name" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/full_name"
+                            style="@style/RegisterInput"
+                            android:layout_below="@id/full_name_label"
+                            android:autofillHints="name"
+                            android:hint="Enter your full name"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPersonName" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_toEndOf="@id/name_column_center">
+
+                        <TextView
+                            android:id="@+id/email_label"
+                            style="@style/RegisterLabel"
+                            android:labelFor="@id/email"
+                            android:text="Email Address" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/email"
+                            style="@style/RegisterInput"
+                            android:layout_below="@id/email_label"
+                            android:autofillHints="emailAddress"
+                            android:hint="example@email.com"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <!-- Password and phone -->
+                <RelativeLayout
+                    android:id="@+id/password_phone_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_email_row"
+                    android:layout_marginTop="12dp">
+
+                    <View
+                        android:id="@+id/password_column_center"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@id/password_column_center">
+
+                        <TextView
+                            android:id="@+id/new_password_label"
+                            style="@style/RegisterLabel"
+                            android:labelFor="@id/new_password"
+                            android:text="Password" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/new_password"
+                            style="@style/RegisterInput"
+                            android:layout_below="@id/new_password_label"
+                            android:autofillHints="newPassword"
+                            android:hint="Create a password"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPassword" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_toEndOf="@id/password_column_center">
+
+                        <TextView
+                            android:id="@+id/phone_label"
+                            style="@style/RegisterLabel"
+                            android:labelFor="@id/phone"
+                            android:text="Phone Number" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/phone"
+                            style="@style/RegisterInput"
+                            android:layout_below="@id/phone_label"
+                            android:autofillHints="phone"
+                            android:hint="09xxxxxxxxx"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/confirm_password_label"
+                    style="@style/RegisterLabel"
+                    android:layout_below="@id/password_phone_row"
+                    android:layout_marginTop="12dp"
+                    android:labelFor="@id/confirm_password"
+                    android:text="Confirm Password" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/confirm_password"
+                    style="@style/RegisterInput"
+                    android:layout_below="@id/confirm_password_label"
+                    android:autofillHints="newPassword"
+                    android:hint="Re-enter your password"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword" />
+
+            </RelativeLayout>
+
+            <!-- Address details -->
+            <RelativeLayout
+                android:id="@+id/address_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/account_card"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/chachix_card"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/address_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="28dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/register_location_pin" />
+
+                <TextView
+                    android:id="@+id/address_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@id/address_icon"
+                    android:text="Address Information"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/address_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/address_title"
+                    android:layout_alignStart="@id/address_title"
+                    android:text="Where should we deliver your orders?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/street_label"
+                    style="@style/RegisterLabel"
+                    android:layout_below="@id/address_subtitle"
+                    android:layout_marginTop="16dp"
+                    android:labelFor="@id/street"
+                    android:text="Street/Building" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/street"
+                    style="@style/RegisterInput"
+                    android:layout_below="@id/street_label"
+                    android:autofillHints="postalAddress"
+                    android:hint="e.g. Rizal St., Bldg. 2"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPostalAddress" />
+
+                <TextView
+                    android:id="@+id/province_label"
+                    style="@style/RegisterLabel"
+                    android:layout_below="@id/street"
+                    android:layout_marginTop="8dp"
+                    android:labelFor="@id/province"
+                    android:text="Province" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/province"
+                    style="@style/RegisterInput"
+                    android:layout_below="@id/province_label"
+                    android:hint="e.g. Metro Manila"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords" />
+
+                <TextView
+                    android:id="@+id/city_label"
+                    style="@style/RegisterLabel"
+                    android:layout_below="@id/province"
+                    android:layout_marginTop="8dp"
+                    android:labelFor="@id/city"
+                    android:text="City / Municipality" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/city"
+                    style="@style/RegisterInput"
+                    android:layout_below="@id/city_label"
+                    android:hint="e.g. Manila"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords" />
+
+                <TextView
+                    android:id="@+id/zip_label"
+                    style="@style/RegisterLabel"
+                    android:layout_below="@id/city"
+                    android:layout_marginTop="8dp"
+                    android:labelFor="@id/zip_code"
+                    android:text="Zip Code" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/zip_code"
+                    style="@style/RegisterInput"
+                    android:layout_below="@id/zip_label"
+                    android:autofillHints="postalCode"
+                    android:hint="e.g. 8000"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLength="4" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/signup_button"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/zip_code"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/chachix_button"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
+                    android:text="SIGN UP"
+                    android:textColor="#D90000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
+
+                <CheckBox
+                    android:id="@+id/terms_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/signup_button"
+                    android:layout_centerHorizontal="true"
+                    android:buttonTint="#FFFFFF"
+                    android:text="Agree to terms and conditions"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/login_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/terms_checkbox"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="Already have an account? Log in"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

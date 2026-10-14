@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="HomeSectionHeading">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#B84452</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HomeNavigationItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:drawablePadding">3dp</item>
+        <item name="android:textColor">#D96C79</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="HomeProductCard">
+        <item name="android:layout_width">88dp</item>
+        <item name="android:layout_height">138dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="HomeProductSurface">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">82dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:background">@drawable/home_product_background</item>
+    </style>
+
+    <style name="HomeProductImage">
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">96dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="HomeProductName">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#AE4E60</item>
+        <item name="android:textSize">9sp</item>
+    </style>
+
+</resources>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_size_sheet"
+    android:padding="18dp"
+    tools:context=".product4">
+
+    <RelativeLayout
+        android:id="@+id/size_product_header"
+        android:layout_width="match_parent"
+        android:layout_height="84dp">
+
+        <ImageView
+            android:id="@+id/size_product_image"
+            android:layout_width="64dp"
+            android:layout_height="76dp"
+            android:background="#FFF0F4"
+            android:contentDescription="Kelsey perfume"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/product4" />
+
+        <TextView
+            android:id="@+id/size_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/size_product_image"
+            android:layout_marginStart="12dp"
+            android:background="#FF4149"
+            android:paddingStart="6dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="2dp"
+            android:text="SALE"
+            android:textColor="#FFFFFF"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/size_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/size_discount"
+            android:layout_toEndOf="@id/size_product_image"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:text="₱399.00"
+            android:textColor="#FF4149"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/size_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/size_product_price"
+            android:layout_toEndOf="@id/size_product_image"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Kelsey"
+            android:textColor="#222222"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/size_selected_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/size_product_name"
+            android:layout_toEndOf="@id/size_product_image"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:text="100ML"
+            android:textColor="#777777"
+            android:textSize="11sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/sizes_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/size_product_header"
+        android:layout_marginTop="18dp"
+        android:text="Sizes"
+        android:textColor="#222222"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <HorizontalScrollView
+        android:id="@+id/size_options_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/sizes_heading"
+        android:layout_marginTop="8dp"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/size_100ml"
+                style="@style/PerfumeSizeOption"
+                android:text="100ML" />
+
+            <TextView
+                android:id="@+id/size_50ml"
+                style="@style/PerfumeSizeOption"
+                android:layout_toEndOf="@id/size_100ml"
+                android:layout_marginStart="8dp"
+                android:text="50ML" />
+
+            <TextView
+                android:id="@+id/size_30ml"
+                style="@style/PerfumeSizeOption"
+                android:layout_toEndOf="@id/size_50ml"
+                android:layout_marginStart="8dp"
+                android:text="30ML" />
+
+            <TextView
+                android:id="@+id/size_15ml"
+                style="@style/PerfumeSizeOption"
+                android:layout_toEndOf="@id/size_30ml"
+                android:layout_marginStart="8dp"
+                android:text="15ML" />
+
+        </RelativeLayout>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/size_buy_now"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_below="@id/size_options_scroll"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/bg_size_buy_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="BUY NOW\nFlash sale ₱399"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

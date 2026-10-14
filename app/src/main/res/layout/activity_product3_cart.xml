@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_size_sheet"
+    android:padding="18dp"
+    tools:context=".product3">
+
+    <!-- Product information -->
+    <RelativeLayout
+        android:id="@+id/cart_size_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="96dp">
+
+        <ImageView
+            android:id="@+id/cart_size_image"
+            android:layout_width="64dp"
+            android:layout_height="84dp"
+            android:background="#FFF0F4"
+            android:contentDescription="Luminous perfume"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/product3" />
+
+        <TextView
+            android:id="@+id/cart_size_sale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/cart_size_image"
+            android:layout_marginStart="12dp"
+            android:background="#FF4149"
+            android:paddingStart="6dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="2dp"
+            android:text="SALE"
+            android:textColor="#FFFFFF"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cart_size_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cart_size_sale"
+            android:layout_toEndOf="@id/cart_size_image"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:text="₱399.00"
+            android:textColor="#FF4149"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cart_size_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cart_size_price"
+            android:layout_toEndOf="@id/cart_size_image"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Luminous"
+            android:textColor="#222222"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cart_size_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cart_size_name"
+            android:layout_toEndOf="@id/cart_size_image"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:text="100ML"
+            android:textColor="#777777"
+            android:textSize="11sp" />
+
+    </RelativeLayout>
+
+    <!-- Size choices -->
+    <TextView
+        android:id="@+id/cart_sizes_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cart_size_header"
+        android:layout_marginTop="18dp"
+        android:text="Sizes"
+        android:textColor="#222222"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <HorizontalScrollView
+        android:id="@+id/cart_size_options_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/cart_sizes_heading"
+        android:layout_marginTop="8dp"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/cart_size_100ml"
+                style="@style/PerfumeSizeOption"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="100ML" />
+
+            <TextView
+                android:id="@+id/cart_size_50ml"
+                style="@style/PerfumeSizeOption"
+                android:layout_toEndOf="@id/cart_size_100ml"
+                android:layout_marginStart="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="50ML" />
+
+            <TextView
+                android:id="@+id/cart_size_30ml"
+                style="@style/PerfumeSizeOption"
+                android:layout_toEndOf="@id/cart_size_50ml"
+                android:layout_marginStart="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="30ML" />
+
+            <TextView
+                android:id="@+id/cart_size_15ml"
+                style="@style/PerfumeSizeOption"
+                android:layout_toEndOf="@id/cart_size_30ml"
+                android:layout_marginStart="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="15ML" />
+
+        </RelativeLayout>
+
+    </HorizontalScrollView>
+
+    <!-- Add to cart -->
+    <TextView
+        android:id="@+id/product_cart_add"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_below="@id/cart_size_options_scroll"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/bg_size_buy_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="Add to cart"
+        android:textColor="#FFFFFF"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF89A3"
+    tools:context=".Profile">
+
+    <!-- Bottom navigation -->
+    <RelativeLayout
+        android:id="@+id/profile_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/home_navigation_background">
+
+        <View
+            android:id="@+id/nav_center"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerHorizontal="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/nav_center">
+
+            <View
+                android:id="@+id/nav_left_center"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/profile_nav_home"
+                style="@style/ProfileNavigationItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/nav_left_center"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:drawableTop="@drawable/ic_home"
+                android:text="HOME" />
+
+            <TextView
+                android:id="@+id/profile_nav_offers"
+                style="@style/ProfileNavigationItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/nav_left_center"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:drawableTop="@drawable/ic_gift"
+                android:text="OFFERS" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/nav_center">
+
+            <View
+                android:id="@+id/nav_right_center"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/profile_nav_cart"
+                style="@style/ProfileNavigationItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/nav_right_center"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:drawableTop="@drawable/ic_cart"
+                android:text="CART" />
+
+            <TextView
+                android:id="@+id/profile_nav_profile"
+                style="@style/ProfileNavigationItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/nav_right_center"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:drawableTop="@drawable/ic_profile"
+                android:text="PROFILE"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!-- Profile content -->
+    <ScrollView
+        android:id="@+id/profile_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/profile_navigation"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="24dp">
+
+            <!-- Registered user details -->
+            <RelativeLayout
+                android:id="@+id/profile_header"
+                android:layout_width="match_parent"
+                android:layout_height="138dp">
+
+                <TextView
+                    android:id="@+id/profile_user_initials"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/home_circle"
+                    android:gravity="center"
+                    android:text="?"
+                    android:textColor="#BD4E66"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="GG" />
+
+                <ImageButton
+                    android:id="@+id/profile_settings"
+                    android:layout_width="36dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Settings"
+                    android:padding="6dp"
+                    android:src="@android:drawable/ic_menu_manage"
+                    android:tint="#FFFFFF" />
+
+                <ImageButton
+                    android:id="@+id/profile_favorites"
+                    android:layout_width="36dp"
+                    android:layout_height="48dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/profile_settings"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Wishlist"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_heart"
+                    android:tint="#FFFFFF" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toStartOf="@id/profile_favorites"
+                    android:layout_toEndOf="@id/profile_user_initials">
+
+                    <TextView
+                        android:id="@+id/profile_user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Loading..."
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text="James Gallenero" />
+
+                    <TextView
+                        android:id="@+id/profile_user_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/profile_user_name"
+                        android:layout_marginTop="4dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        tools:text="Davao City, Davao del Sur" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <!-- My purchases -->
+            <RelativeLayout
+                android:id="@+id/purchases_card"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_below="@id/profile_header"
+                android:background="@drawable/profile_white_card"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/purchases_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Purchases"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/purchase_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="top|end"
+                    android:text="View Purchase History ›"
+                    android:textColor="#777777"
+                    android:textSize="9sp" />
+
+                <View
+                    android:id="@+id/purchases_center"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    android:layout_centerHorizontal="true" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toStartOf="@id/purchases_center">
+
+                    <View
+                        android:id="@+id/purchases_left_center"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/to_pay"
+                        style="@style/ProfilePurchaseItem"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@id/purchases_left_center"
+                        android:drawableTop="@drawable/ic_receipt"
+                        android:text="To pay" />
+
+                    <TextView
+                        android:id="@+id/to_ship"
+                        style="@style/ProfilePurchaseItem"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/purchases_left_center"
+                        android:drawableTop="@drawable/ic_receipt"
+                        android:text="To ship" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@id/purchases_center">
+
+                    <View
+                        android:id="@+id/purchases_right_center"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/to_receive"
+                        style="@style/ProfilePurchaseItem"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@id/purchases_right_center"
+                        android:drawableTop="@drawable/ic_delivery"
+                        android:text="To Receive" />
+
+                    <TextView
+                        android:id="@+id/to_rate"
+                        style="@style/ProfilePurchaseItem"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/purchases_right_center"
+                        android:drawableTop="@drawable/ic_rating"
+                        android:text="To rate" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <!-- Wishlist -->
+            <RelativeLayout
+                android:id="@+id/wishlist_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/purchases_card"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/profile_white_card"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/wishlist_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_heart"
+                    android:tint="#EDADAE" />
+
+                <TextView
+                    android:id="@+id/wishlist_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_toEndOf="@id/wishlist_icon"
+                    android:gravity="center_vertical"
+                    android:text="My Wishlist"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/view_wishlist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="top|end"
+                    android:text="View all ›"
+                    android:textColor="#777777"
+                    android:textSize="9sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_wishlist">
+
+                    <View
+                        android:id="@+id/wishlist_center"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <include
+                        android:id="@+id/wishlist_one"
+                        layout="@layout/wishlist_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@id/wishlist_center" />
+
+                    <include
+                        android:id="@+id/wishlist_two"
+                        layout="@layout/wishlist_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_toEndOf="@id/wishlist_center" />
+
+                    <include
+                        android:id="@+id/wishlist_three"
+                        layout="@layout/wishlist_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/wishlist_one"
+                        android:layout_alignStart="@id/wishlist_one"
+                        android:layout_alignEnd="@id/wishlist_one"
+                        android:layout_marginTop="12dp" />
+
+                    <include
+                        android:id="@+id/wishlist_four"
+                        layout="@layout/wishlist_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/wishlist_two"
+                        android:layout_alignStart="@id/wishlist_two"
+                        android:layout_alignEnd="@id/wishlist_two"
+                        android:layout_marginTop="12dp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

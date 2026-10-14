@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chachix_background"
+    tools:context=".payment">
+
+    <ScrollView
+        android:id="@+id/payment_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+            <!-- Delivery details loaded from Firebase -->
+            <RelativeLayout
+                android:id="@+id/payment_delivery_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cart_white_background"
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/payment_back"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Back"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_back"
+                    android:tint="#222222" />
+
+                <TextView
+                    android:id="@+id/delivery_heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/payment_delivery_background"
+                    android:drawableStart="@drawable/ic_delivery"
+                    android:drawablePadding="6dp"
+                    android:drawableTint="#FFFFFF"
+                    android:gravity="center"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="Delivery Information"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/delivery_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/payment_back"
+                    android:layout_marginTop="4dp"
+                    android:background="#CCCCCC" />
+
+                <TextView
+                    android:id="@+id/payment_recipient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delivery_divider"
+                    android:layout_marginTop="10dp"
+                    android:text="Loading delivery information..."
+                    android:textColor="#222222"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    tools:text="Gabriel Gallenero  09123456789" />
+
+                <TextView
+                    android:id="@+id/payment_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/payment_recipient"
+                    android:layout_marginTop="6dp"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="#333333"
+                    android:textSize="10sp"
+                    tools:text="Rizal Street\nDavao City, Davao del Sur 8000" />
+
+            </RelativeLayout>
+
+            <!-- Actual cart products added by payment.java -->
+            <RelativeLayout
+                android:id="@+id/payment_products"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/payment_delivery_card"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/cart_white_background"
+                android:padding="10dp">
+
+                <RelativeLayout
+                    android:id="@+id/payment_items_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/payment_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/payment_items_container"
+                    android:gravity="center"
+                    android:text="No products selected"
+                    android:textColor="#777777"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </RelativeLayout>
+
+            <!-- Order summary and payment choices -->
+            <RelativeLayout
+                android:id="@+id/payment_summary_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/payment_products"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/cart_white_background"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/payment_summary_heading"
+                    style="@style/CartSummaryHeading"
+                    android:text="Order Summary" />
+
+                <TextView
+                    android:id="@+id/payment_subtotal_label"
+                    style="@style/CartSummaryLabel"
+                    android:layout_below="@id/payment_summary_heading"
+                    android:layout_marginTop="8dp"
+                    android:text="Product subtotal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/payment_subtotal"
+                    style="@style/CartSummaryAmount"
+                    android:layout_alignTop="@id/payment_subtotal_label"
+                    android:text="₱0.00"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/payment_original_label"
+                    style="@style/CartSummaryLabel"
+                    android:layout_below="@id/payment_subtotal_label"
+                    android:text="Original price" />
+
+                <TextView
+                    android:id="@+id/payment_original"
+                    style="@style/CartSummaryAmount"
+                    android:layout_alignTop="@id/payment_original_label"
+                    android:text="₱0.00" />
+
+                <TextView
+                    android:id="@+id/payment_discount_label"
+                    style="@style/CartSummaryLabel"
+                    android:layout_below="@id/payment_original_label"
+                    android:text="Product discount" />
+
+                <TextView
+                    android:id="@+id/payment_discount"
+                    style="@style/CartSummaryAmount"
+                    android:layout_alignTop="@id/payment_discount_label"
+                    android:text="-₱0.00"
+                    android:textColor="#FF4149" />
+
+                <TextView
+                    android:id="@+id/payment_shipping_heading"
+                    style="@style/CartSummaryHeading"
+                    android:layout_below="@id/payment_discount_label"
+                    android:layout_marginTop="12dp"
+                    android:text="Shipping subtotal" />
+
+                <TextView
+                    android:id="@+id/payment_shipping_subtotal"
+                    style="@style/CartSummaryAmount"
+                    android:layout_alignTop="@id/payment_shipping_heading"
+                    android:text="₱0.00"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/payment_shipping_label"
+                    style="@style/CartSummaryLabel"
+                    android:layout_below="@id/payment_shipping_heading"
+                    android:layout_marginTop="4dp"
+                    android:text="Shipping fee" />
+
+                <TextView
+                    android:id="@+id/payment_shipping"
+                    style="@style/CartSummaryAmount"
+                    android:layout_alignTop="@id/payment_shipping_label"
+                    android:text="₱0.00" />
+
+                <TextView
+                    android:id="@+id/payment_shipping_discount_label"
+                    style="@style/CartSummaryLabel"
+                    android:layout_below="@id/payment_shipping_label"
+                    android:text="Shipping discount" />
+
+                <TextView
+                    android:id="@+id/payment_shipping_discount"
+                    style="@style/CartSummaryAmount"
+                    android:layout_alignTop="@id/payment_shipping_discount_label"
+                    android:text="-₱0.00"
+                    android:textColor="#FF4149" />
+
+                <TextView
+                    android:id="@+id/payment_total_label"
+                    style="@style/CartSummaryHeading"
+                    android:layout_below="@id/payment_shipping_discount_label"
+                    android:layout_marginTop="12dp"
+                    android:text="Total" />
+
+                <TextView
+                    android:id="@+id/payment_summary_total"
+                    style="@style/CartSummaryAmount"
+                    android:layout_alignTop="@id/payment_total_label"
+                    android:text="₱0.00"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/payment_summary_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/payment_total_label"
+                    android:layout_marginTop="12dp"
+                    android:background="#BBBBBB" />
+
+                <TextView
+                    android:id="@+id/payment_method_heading"
+                    style="@style/CartSummaryHeading"
+                    android:layout_below="@id/payment_summary_divider"
+                    android:layout_marginTop="12dp"
+                    android:text="Payment method" />
+
+                <!-- Cash on delivery -->
+                <RelativeLayout
+                    android:id="@+id/payment_cod_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/payment_method_heading"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:layout_width="32dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:background="#22A06B"
+                        android:gravity="center"
+                        android:text="COD"
+                        android:textColor="#FFFFFF"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/payment_cod"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="42dp"
+                        android:button="@null"
+                        android:checked="true"
+                        android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                        android:gravity="center_vertical"
+                        android:text="Cash on delivery"
+                        android:textColor="#222222"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+                <!-- Credit/debit card -->
+                <RelativeLayout
+                    android:id="@+id/payment_card_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/payment_cod_row">
+
+                    <TextView
+                        android:layout_width="32dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:background="#444444"
+                        android:gravity="center"
+                        android:text="CARD"
+                        android:textColor="#FFFFFF"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/payment_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="42dp"
+                        android:button="@null"
+                        android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                        android:gravity="center_vertical"
+                        android:text="Add credit/debit card"
+                        android:textColor="#222222"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+                <!-- GCash -->
+                <RelativeLayout
+                    android:id="@+id/payment_gcash_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/payment_card_row">
+
+                    <TextView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/payment_gcash_background"
+                        android:gravity="center"
+                        android:text="G"
+                        android:textColor="#FFFFFF"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/payment_gcash"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="42dp"
+                        android:button="@null"
+                        android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                        android:gravity="center_vertical"
+                        android:text="GCash"
+                        android:textColor="#222222"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+                <!-- Final total -->
+                <TextView
+                    android:id="@+id/payment_item_count"
+                    style="@style/CartSummaryHeading"
+                    android:layout_below="@id/payment_gcash_row"
+                    android:layout_marginTop="20dp"
+                    android:text="Total (0 items)" />
+
+                <TextView
+                    android:id="@+id/payment_bottom_total"
+                    style="@style/CartSummaryAmount"
+                    android:layout_alignTop="@id/payment_item_count"
+                    android:text="₱0.00"
+                    android:textColor="#FF4149"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/payment_place_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/payment_item_count"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/cart_red_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="Place order"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

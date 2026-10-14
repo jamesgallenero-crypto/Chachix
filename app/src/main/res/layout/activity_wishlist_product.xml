@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/profile_product_background"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:contentDescription="Perfume product"
+        android:paddingTop="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/product1" />
+
+    <ImageButton
+        android:id="@+id/product_favorite"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Remove from wishlist"
+        android:padding="14dp"
+        android:src="@drawable/ic_heart" />
+
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_image"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:minHeight="32dp"
+        android:text="Kelsey Scent Unisex - 20% oil fragrance concentration"
+        android:textColor="#222222"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_name"
+        android:layout_marginTop="4dp"
+        android:text="₱499"
+        android:textColor="#FF343B"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/product_live"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_price"
+        android:layout_marginTop="3dp"
+        android:background="#FF8D99"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:text="LIVE OFF"
+        android:textColor="#FFFFFF"
+        android:textSize="7sp" />
+
+    <TextView
+        android:id="@+id/product_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_live"
+        android:layout_marginTop="4dp"
+        android:text="★ 5.0 | 5.2K sold"
+        android:textColor="#9A6A5E"
+        android:textSize="9sp" />
+
+    <TextView
+        android:id="@+id/add_to_cart"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/product_rating"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_cart_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="Add to cart"
+        android:textColor="#FFFFFF"
+        android:textSize="11sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

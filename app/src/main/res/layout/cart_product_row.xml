@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp">
+
+    <ImageView
+        android:id="@+id/cart_item_image"
+        android:layout_width="60dp"
+        android:layout_height="76dp"
+        android:background="@drawable/bg_product"
+        android:contentDescription="Perfume"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/product1" />
+
+    <ImageButton
+        android:id="@+id/cart_item_remove"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Remove product"
+        android:padding="15dp"
+        android:src="@drawable/ic_cart_delete"
+        android:tint="#FF4149" />
+
+    <TextView
+        android:id="@+id/cart_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/cart_item_remove"
+        android:layout_toEndOf="@id/cart_item_image"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="SCENTRICITY"
+        android:textColor="#111111"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/cart_item_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cart_item_name"
+        android:layout_alignStart="@id/cart_item_name"
+        android:text="Eau de Parfum 50ml"
+        android:textColor="#333333"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/cart_item_unit_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cart_item_description"
+        android:layout_alignStart="@id/cart_item_name"
+        android:text="₱280"
+        android:textColor="#111111"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cart_item_unit_price"
+        android:layout_alignStart="@id/cart_item_name"
+        android:text="★★★★★"
+        android:textColor="#FF9800"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/cart_item_total"
+        android:layout_width="62dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="₱280"
+        android:textColor="#111111"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/cart_item_total">
+
+        <TextView
+            android:id="@+id/cart_item_minus"
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Decrease quantity"
+            android:gravity="center"
+            android:text="−"
+            android:textColor="#111111"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/cart_item_quantity"
+            android:layout_width="28dp"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/cart_item_minus"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="#111111"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/cart_item_plus"
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/cart_item_quantity"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Increase quantity"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="#111111"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

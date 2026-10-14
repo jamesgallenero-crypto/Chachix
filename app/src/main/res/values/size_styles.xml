@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PerfumeSizeOption">
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@drawable/bg_size_option</item>
+        <item name="android:textColor">@color/size_option_text</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+</resources>

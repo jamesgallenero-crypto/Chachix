@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chachix_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="90dp">
+
+            <!-- Brand header -->
+            <RelativeLayout
+                android:id="@+id/brand_header"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true">
+
+                <TextView
+                    android:id="@+id/brand_name"
+                    style="@style/ChachixBrand"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="60dp"
+                    android:text="ChaChix"
+                    android:textSize="46sp" />
+
+                <TextView
+                    android:id="@+id/brand_subtitle"
+                    style="@style/ChachixBrand"
+                    android:layout_below="@id/brand_name"
+                    android:layout_centerHorizontal="true"
+                    android:text="Scents"
+                    android:textSize="30sp" />
+
+            </RelativeLayout>
+
+            <!-- Login card -->
+            <RelativeLayout
+                android:id="@+id/login_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/brand_header"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/chachix_card"
+                android:paddingStart="20dp"
+                android:paddingTop="32dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="24dp">
+
+                <TextView
+                    android:id="@+id/login_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center"
+                    android:text="LOGIN YOUR ACCOUNT"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Username -->
+                <TextView
+                    android:id="@+id/username_label"
+                    style="@style/ChachixLabel"
+                    android:layout_below="@id/login_title"
+                    android:layout_marginTop="30dp"
+                    android:labelFor="@id/username"
+                    android:text="Username" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/username"
+                    style="@style/ChachixInput"
+                    android:layout_below="@id/username_label"
+                    android:autofillHints="username"
+                    android:imeOptions="actionNext"
+                    android:inputType="textNoSuggestions" />
+
+                <!-- Password -->
+                <TextView
+                    android:id="@+id/password_label"
+                    style="@style/ChachixLabel"
+                    android:layout_below="@id/username"
+                    android:layout_marginTop="24dp"
+                    android:labelFor="@id/password"
+                    android:text="Password" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/password"
+                    style="@style/ChachixInput"
+                    android:layout_below="@id/password_label"
+                    android:autofillHints="password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword" />
+
+                <!-- Login button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/login_button"
+                    android:layout_width="184dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/chachix_button"
+                    android:backgroundTint="@null"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
+                    android:text="LOGIN"
+                    android:textColor="#D90000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
+
+                <!-- Password recovery -->
+                <TextView
+                    android:id="@+id/forgot_password"
+                    style="@style/ChachixLink"
+                    android:layout_below="@id/login_button"
+                    android:text="Forgot your password" />
+
+                <!-- Registration -->
+                <TextView
+                    android:id="@+id/create_account"
+                    style="@style/ChachixLink"
+                    android:layout_below="@id/forgot_password"
+                    android:text="Don&apos;t have an account?" />
+
+                <!-- Social buttons -->
+                <RelativeLayout
+                    android:id="@+id/social_buttons"
+                    android:layout_width="112dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/create_account"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/facebook_button"
+                        style="@style/ChachixSocial"
+                        android:layout_alignParentStart="true"
+                        android:contentDescription="Facebook sign-in"
+                        android:text="f"
+                        android:textSize="34sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/google_button"
+                        style="@style/ChachixSocial"
+                        android:layout_alignParentEnd="true"
+                        android:contentDescription="Google sign-in"
+                        android:text="G+"
+                        android:textSize="22sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

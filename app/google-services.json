@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "248948877471",
+    "project_id": "chachixx",
+    "storage_bucket": "chachixx.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248948877471:android:e6011d2ea620c73f481aaa",
+        "android_client_info": {
+          "package_name": "com.example.chachix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDHQHLYCT6m6v2TPRNoDFkLI_hg6kCc4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

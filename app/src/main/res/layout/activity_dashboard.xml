@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_background"
+    tools:context=".Dashboard">
+
+    <RelativeLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/home_navigation_background"
+        android:elevation="6dp">
+
+        <View
+            android:id="@+id/navigation_center"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerHorizontal="true" />
+
+        <RelativeLayout
+            android:id="@+id/home_tab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/navigation_center">
+
+            <View
+                android:id="@+id/left_navigation_center"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/nav_home"
+                style="@style/HomeNavigationItem"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/left_navigation_center"
+                android:drawableTop="@drawable/ic_home"
+                android:text="HOME" />
+
+            <TextView
+                android:id="@+id/nav_offers"
+                style="@style/HomeNavigationItem"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/left_navigation_center"
+                android:drawableTop="@drawable/ic_gift"
+                android:text="OFFERS" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/navigation_center">
+
+            <View
+                android:id="@+id/right_navigation_center"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/nav_cart"
+                style="@style/HomeNavigationItem"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/right_navigation_center"
+                android:drawableTop="@drawable/ic_cart"
+                android:text="CART" />
+
+            <TextView
+                android:id="@+id/nav_profile"
+                style="@style/HomeNavigationItem"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/right_navigation_center"
+                android:drawableTop="@drawable/ic_profile"
+                android:text="PROFILE" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="32dp">
+
+            <!-- Firebase user details -->
+            <RelativeLayout
+                android:id="@+id/profile_header"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/avatar"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/home_circle"
+                    android:gravity="center"
+                    android:text="?"
+                    android:textColor="#C95163"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="GG" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/notifications_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/home_circle"
+                    android:contentDescription="Notifications"
+                    android:padding="13dp"
+                    android:src="@drawable/ic_bell" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_toStartOf="@id/notifications_button"
+                    android:layout_toEndOf="@id/avatar">
+
+                    <TextView
+                        android:id="@+id/customer_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Loading..."
+                        android:textColor="#B74252"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text="James Gallenero" />
+
+                    <TextView
+                        android:id="@+id/customer_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/customer_name"
+                        android:layout_marginTop="4dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="#C96576"
+                        android:textSize="11sp"
+                        tools:text="Davao City, Davao del Sur" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/search_input"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@id/profile_header"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/home_search_background"
+                android:backgroundTint="@null"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:drawablePadding="8dp"
+                android:drawableTint="#D96777"
+                android:hint="What are you looking for..."
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:singleLine="true"
+                android:textColor="#A93D4B"
+                android:textColorHint="#C4707B"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/offers_heading"
+                style="@style/HomeSectionHeading"
+                android:layout_below="@id/search_input"
+                android:layout_marginTop="18dp"
+                android:text="Exclusive Offers" />
+
+            <RelativeLayout
+                android:id="@+id/offer_banner"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_below="@id/offers_heading"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/home_offer_background"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/banner_art"
+                    android:layout_width="100dp"
+                    android:layout_height="140dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:importantForAccessibility="no"
+                    android:rotation="15"
+                    android:src="@drawable/design1" />
+
+                <TextView
+                    android:id="@+id/offer_brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ChaChix Scents PH"
+                    android:textColor="#9E2C40"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/offer_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/offer_brand"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_toStartOf="@id/banner_art"
+                    android:text="Bring ChaChix Scents Perfume Bar to your next corporate gathering!"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/offer_title"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_toStartOf="@id/banner_art"
+                    android:text="Your favorite perfume bar is ready to serve! Book now and let your guests create their own scent."
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/trending_heading"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@id/offer_banner"
+                android:layout_marginTop="18dp">
+
+                <TextView
+                    style="@style/HomeSectionHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Currently Trending" />
+
+                <TextView
+                    android:id="@+id/see_all"
+                    android:layout_width="64dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="See All"
+                    android:textColor="#B84452"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/product_row"
+                android:layout_width="match_parent"
+                android:layout_height="145dp"
+                android:layout_below="@id/trending_heading">
+
+                <RelativeLayout
+                    android:id="@+id/product_sentricity"
+                    style="@style/HomeProductCard"
+                    android:layout_alignParentStart="true">
+
+                    <View style="@style/HomeProductSurface" />
+
+                    <ImageView
+                        android:id="@+id/sentricity_image"
+                        style="@style/HomeProductImage"
+                        android:contentDescription="Scentricity perfume"
+                        android:src="@drawable/product1" />
+
+                    <TextView
+                        style="@style/HomeProductName"
+                        android:layout_below="@id/sentricity_image"
+                        android:text="SENTRICITY" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/product_richy"
+                    style="@style/HomeProductCard"
+                    android:layout_centerHorizontal="true">
+
+                    <View style="@style/HomeProductSurface" />
+
+                    <ImageView
+                        android:id="@+id/richy_image"
+                        style="@style/HomeProductImage"
+                        android:contentDescription="Richy perfume"
+                        android:src="@drawable/product2" />
+
+                    <TextView
+                        style="@style/HomeProductName"
+                        android:layout_below="@id/richy_image"
+                        android:text="RICHY" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/product_luminous"
+                    style="@style/HomeProductCard"
+                    android:layout_alignParentEnd="true">
+
+                    <View style="@style/HomeProductSurface" />
+
+                    <ImageView
+                        android:id="@+id/luminous_image"
+                        style="@style/HomeProductImage"
+                        android:contentDescription="Luminous perfume"
+                        android:src="@drawable/product3" />
+
+                    <TextView
+                        style="@style/HomeProductName"
+                        android:layout_below="@id/luminous_image"
+                        android:text="LUMINOUS" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
