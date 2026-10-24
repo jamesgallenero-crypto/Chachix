@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/chachix_background"
+    android:background="#FFF7FA"
     tools:context=".setting">
 
     <ScrollView
@@ -13,139 +14,258 @@
         android:fillViewport="true"
         android:scrollbars="none">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="20dp"
-            android:paddingTop="28dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="80dp">
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="36dp">
 
-            <ImageButton
-                android:id="@+id/settings_back"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentStart="true"
-                android:background="@drawable/settings_back_background"
-                android:contentDescription="Go back"
-                android:padding="9dp"
-                android:src="@drawable/ic_back"
-                android:tint="#FF89A3" />
+            <!-- SETTINGS HEADER -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
 
+                <ImageButton
+                    android:id="@+id/settings_back"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/settings_back_background"
+                    android:contentDescription="Go back"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_back"
+                    android:tint="#C34770" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="serif"
+                    android:text="Settings"
+                    android:textColor="#66263F"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <!-- PROFILE CARD -->
             <RelativeLayout
                 android:id="@+id/settings_panel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/settings_back"
-                android:layout_marginTop="28dp"
-                android:background="@drawable/settings_panel_background"
-                android:paddingStart="16dp"
-                android:paddingTop="22dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="80dp">
+                android:layout_marginTop="16dp"
+                android:background="@drawable/settings_modern_profile"
+                android:minHeight="112dp"
+                android:padding="18dp">
 
                 <ImageView
                     android:id="@+id/settings_avatar"
-                    android:layout_width="76dp"
-                    android:layout_height="76dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/settings_back_background"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/settings_modern_avatar"
                     android:clipToOutline="true"
-                    android:contentDescription="Default profile avatar"
-                    android:padding="16dp"
+                    android:contentDescription="Profile avatar"
+                    android:padding="14dp"
                     android:scaleType="fitCenter"
                     android:src="@android:drawable/ic_menu_myplaces"
-                    android:tint="#FF89A3" />
+                    android:tint="#D9527C" />
 
-                <TextView
-                    android:id="@+id/settings_name"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/settings_avatar"
-                    android:layout_marginTop="14dp"
-                    android:gravity="center"
-                    android:text="Loading profile..."
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    tools:text="Alabata, Crist Jhon" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="14dp"
+                    android:layout_toEndOf="@id/settings_avatar"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/settings_location"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/settings_name"
-                    android:layout_marginTop="6dp"
-                    android:gravity="center"
-                    android:text=""
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    tools:text="Ecoland, Davao City" />
+                    <!-- FIREBASE NAME -->
+                    <TextView
+                        android:id="@+id/settings_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="Loading profile..."
+                        android:textColor="#602139"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        tools:text="Alabata, Crist Jhon" />
 
-                <TextView
-                    android:id="@+id/settings_edit_profile"
-                    style="@style/SettingsMenuItem"
-                    android:layout_below="@id/settings_location"
-                    android:layout_marginTop="38dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:drawableStart="@drawable/ic_profile"
-                    android:text="Edit Profile" />
+                    <!-- FIREBASE LOCATION -->
+                    <TextView
+                        android:id="@+id/settings_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:textColor="#8F596E"
+                        android:textSize="12sp"
+                        tools:text="Ecoland, Davao City" />
 
-                <TextView
-                    android:id="@+id/settings_change_password"
-                    style="@style/SettingsMenuItem"
-                    android:layout_below="@id/settings_edit_profile"
-                    android:layout_marginTop="6dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:drawableStart="@android:drawable/ic_lock_lock"
-                    android:text="Change Password" />
-
-                <TextView
-                    android:id="@+id/settings_notifications"
-                    style="@style/SettingsMenuItem"
-                    android:layout_below="@id/settings_change_password"
-                    android:layout_marginTop="6dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:drawableStart="@drawable/ic_bell"
-                    android:text="Notifications" />
-
-                <TextView
-                    android:id="@+id/settings_help"
-                    style="@style/SettingsMenuItem"
-                    android:layout_below="@id/settings_notifications"
-                    android:layout_marginTop="6dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:drawableStart="@android:drawable/ic_menu_help"
-                    android:text="Help &amp; Support" />
-
-                <TextView
-                    android:id="@+id/settings_about"
-                    style="@style/SettingsMenuItem"
-                    android:layout_below="@id/settings_help"
-                    android:layout_marginTop="6dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:text="About us" />
-
-                <TextView
-                    android:id="@+id/settings_logout"
-                    style="@style/SettingsMenuItem"
-                    android:layout_width="132dp"
-                    android:layout_below="@id/settings_about"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="22dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:drawableStart="@android:drawable/ic_lock_power_off"
-                    android:text="Logout" />
+                </LinearLayout>
 
             </RelativeLayout>
 
-        </RelativeLayout>
+            <!-- ACCOUNT SECTION -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="12dp"
+                android:text="Account"
+                android:textColor="#66263F"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- EDIT PROFILE -->
+            <TextView
+                android:id="@+id/settings_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/settings_modern_row"
+                android:clickable="true"
+                android:focusable="true"
+                android:drawableStart="@drawable/ic_profile"
+                android:drawableEnd="@drawable/settings_modern_chevron"
+                android:drawablePadding="14dp"
+                android:drawableTint="#D9527C"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Edit profile"
+                android:textColor="#49313F"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- CHANGE PASSWORD -->
+            <TextView
+                android:id="@+id/settings_change_password"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/settings_modern_row"
+                android:clickable="true"
+                android:focusable="true"
+                android:drawableStart="@android:drawable/ic_lock_lock"
+                android:drawableEnd="@drawable/settings_modern_chevron"
+                android:drawablePadding="14dp"
+                android:drawableTint="#D9527C"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Change password"
+                android:textColor="#49313F"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- PREFERENCES SECTION -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="12dp"
+                android:text="Preferences &amp; support"
+                android:textColor="#66263F"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- NOTIFICATIONS -->
+            <TextView
+                android:id="@+id/settings_notifications"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/settings_modern_row"
+                android:clickable="true"
+                android:focusable="true"
+                android:drawableStart="@drawable/ic_bell"
+                android:drawableEnd="@drawable/settings_modern_chevron"
+                android:drawablePadding="14dp"
+                android:drawableTint="#D9527C"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Notifications"
+                android:textColor="#49313F"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- HELP AND SUPPORT -->
+            <TextView
+                android:id="@+id/settings_help"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/settings_modern_row"
+                android:clickable="true"
+                android:focusable="true"
+                android:drawableStart="@android:drawable/ic_menu_help"
+                android:drawableEnd="@drawable/settings_modern_chevron"
+                android:drawablePadding="14dp"
+                android:drawableTint="#D9527C"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Help &amp; support"
+                android:textColor="#49313F"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- ABOUT CHACHIX -->
+            <TextView
+                android:id="@+id/settings_about"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/settings_modern_row"
+                android:clickable="true"
+                android:focusable="true"
+                android:drawableStart="@android:drawable/ic_menu_info_details"
+                android:drawableEnd="@drawable/settings_modern_chevron"
+                android:drawablePadding="14dp"
+                android:drawableTint="#D9527C"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="About ChaChix"
+                android:textColor="#49313F"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- LOGOUT -->
+            <TextView
+                android:id="@+id/settings_logout"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/settings_modern_logout"
+                android:clickable="true"
+                android:focusable="true"
+                android:drawableStart="@android:drawable/ic_lock_power_off"
+                android:drawablePadding="12dp"
+                android:drawableTint="#D0446D"
+                android:gravity="center"
+                android:text="Log out"
+                android:textColor="#C23D66"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <!-- FOOTER -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:gravity="center"
+                android:text="ChaChix Scents PH"
+                android:textColor="#A5909C"
+                android:textSize="11sp" />
+
+        </LinearLayout>
 
     </ScrollView>
 

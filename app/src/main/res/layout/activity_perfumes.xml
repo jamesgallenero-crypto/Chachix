@@ -1,129 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/perfumes_background">
-
-    <!-- Bottom navigation -->
-    <RelativeLayout
-        android:id="@+id/perfumes_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/home_navigation_background">
-
-        <View
-            android:id="@+id/perfumes_nav_center"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            android:layout_centerHorizontal="true" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/perfumes_nav_center">
-
-            <View
-                android:id="@+id/perfumes_nav_left_center"
-                android:layout_width="1dp"
-                android:layout_height="1dp"
-                android:layout_centerHorizontal="true" />
-
-            <ImageButton
-                android:id="@+id/perfumes_nav_home"
-                style="@style/PerfumesNavigationButton"
-                android:layout_alignParentStart="true"
-                android:layout_toStartOf="@id/perfumes_nav_left_center"
-                android:contentDescription="Home"
-                android:src="@drawable/ic_home" />
-
-            <ImageButton
-                android:id="@+id/perfumes_nav_catalog"
-                style="@style/PerfumesNavigationButton"
-                android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@id/perfumes_nav_left_center"
-                android:contentDescription="Perfumes"
-                android:src="@drawable/ic_gift" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@id/perfumes_nav_center">
-
-            <View
-                android:id="@+id/perfumes_nav_right_center"
-                android:layout_width="1dp"
-                android:layout_height="1dp"
-                android:layout_centerHorizontal="true" />
-
-            <ImageButton
-                android:id="@+id/perfumes_nav_cart"
-                style="@style/PerfumesNavigationButton"
-                android:layout_alignParentStart="true"
-                android:layout_toStartOf="@id/perfumes_nav_right_center"
-                android:contentDescription="Cart"
-                android:src="@drawable/ic_cart" />
-
-            <ImageButton
-                android:id="@+id/perfumes_nav_profile"
-                style="@style/PerfumesNavigationButton"
-                android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@id/perfumes_nav_right_center"
-                android:contentDescription="Profile"
-                android:src="@drawable/ic_profile" />
-
-        </RelativeLayout>
-
-    </RelativeLayout>
+    android:background="#FFF7FA">
 
     <ScrollView
+        android:id="@+id/perfumes_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_above="@id/perfumes_navigation"
         android:fillViewport="true"
+        android:clipToPadding="false"
         android:scrollbars="none">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="24dp">
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="32dp">
 
-            <!-- Brand -->
             <RelativeLayout
                 android:id="@+id/perfumes_header"
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                android:layout_height="132dp"
+                android:background="@drawable/perfumes_ui_header"
+                android:padding="16dp">
 
                 <ImageButton
                     android:id="@+id/perfumes_back"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/bg_back_button"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/perfumes_ui_circle"
                     android:contentDescription="Go back"
-                    android:padding="6dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_back" />
+                    android:padding="13dp"
+                    android:src="@drawable/ic_back"
+                    app:tint="#B94069" />
+
                 <TextView
                     android:id="@+id/perfumes_brand"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="serif"
-                    android:includeFontPadding="false"
                     android:text="ChaChix"
-                    android:textColor="#FFFFFF"
-                    android:textSize="36sp"
+                    android:textColor="#7E2945"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -131,12 +60,20 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/perfumes_brand"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="serif"
-                    android:includeFontPadding="false"
-                    android:text="Scents"
-                    android:textColor="#FFFFFF"
-                    android:textSize="26sp"
+                    android:letterSpacing="0.25"
+                    android:text="SCENTS"
+                    android:textColor="#AE5874"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:text="Find the fragrance that feels like you"
+                    android:textColor="#87606F"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
 
@@ -144,281 +81,652 @@
                 android:id="@+id/perfumes_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/perfumes_header"
-                android:layout_marginStart="4dp"
-                android:text="Perfume’s"
-                android:textColor="#FFFFFF"
-                android:textSize="25sp" />
+                android:layout_marginTop="22dp"
+                android:fontFamily="serif"
+                android:text="Explore perfumes"
+                android:textColor="#702B47"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/perfumes_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/perfumes_title"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="2dp"
-                android:text="Leave a Trace They’ll Remember!"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp" />
+                android:layout_marginTop="4dp"
+                android:text="Leave a trace they'll remember"
+                android:textColor="#9C7B89"
+                android:textSize="13sp" />
 
-            <!-- Search -->
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/perfumes_search"
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_below="@id/perfumes_subtitle"
+                android:layout_height="54dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/home_search_background"
+                android:background="@drawable/perfumes_ui_search"
                 android:backgroundTint="@null"
                 android:drawableStart="@android:drawable/ic_menu_search"
-                android:drawablePadding="10dp"
-                android:drawableTint="#333333"
-                android:elevation="2dp"
-                android:hint="Search product..."
+                android:drawablePadding="12dp"
+                android:drawableTint="#D3537D"
+                android:hint="Search your favorite perfume"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:singleLine="true"
-                android:textColor="#333333"
-                android:textColorHint="#777777"
-                android:textSize="12sp" />
+                android:textColor="#412A36"
+                android:textColorHint="#A18A95"
+                android:textSize="14sp" />
 
-            <!-- Product grid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Our fragrances"
+                    android:textColor="#6D3047"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 scents"
+                    android:textColor="#B4617F"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
             <RelativeLayout
                 android:id="@+id/perfumes_grid"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/perfumes_search"
-                android:layout_marginTop="18dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp">
+                android:layout_height="wrap_content">
 
                 <View
                     android:id="@+id/perfumes_grid_center"
                     android:layout_width="1dp"
                     android:layout_height="1dp"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone" />
 
-                <!-- SCENTRICITY -->
-                <RelativeLayout
-                    android:id="@+id/scentricity_card"
-                    style="@style/PerfumesProductCard"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginEnd="14dp"
-                    android:layout_toStartOf="@id/perfumes_grid_center">
-
-                    <ImageView
-                        android:id="@+id/scentricity_photo"
-                        style="@style/PerfumesProductImage"
-                        android:contentDescription="Scentricity perfume"
-                        android:src="@drawable/product1" />
-
-                    <TextView
-                        android:id="@+id/scentricity_title"
-                        style="@style/PerfumesProductTitle"
-                        android:layout_below="@id/scentricity_photo"
-                        android:text="SCENTRICITY Scent Unisex - 20% oil fragrance concentration..." />
-
-                    <TextView
-                        android:id="@+id/scentricity_price"
-                        style="@style/PerfumesProductPrice"
-                        android:layout_below="@id/scentricity_title"
-                        android:text="₱499" />
-
-                    <TextView
-                        android:id="@+id/scentricity_offer"
-                        style="@style/PerfumesProductOffer"
-                        android:layout_below="@id/scentricity_price"
-                        android:text="LIVE OFF" />
-
-                    <TextView
-                        style="@style/PerfumesProductRating"
-                        android:layout_below="@id/scentricity_offer"
-                        android:text="★ 5.0 | 5.2K sold" />
-
-                </RelativeLayout>
-
-                <!-- RICHY -->
-                <RelativeLayout
-                    android:id="@+id/richy_card"
-                    style="@style/PerfumesProductCard"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="14dp"
-                    android:layout_toEndOf="@id/perfumes_grid_center">
-
-                    <ImageView
-                        android:id="@+id/richy_photo"
-                        style="@style/PerfumesProductImage"
-                        android:contentDescription="Richy perfume"
-                        android:src="@drawable/product2" />
-
-                    <TextView
-                        android:id="@+id/richy_title"
-                        style="@style/PerfumesProductTitle"
-                        android:layout_below="@id/richy_photo"
-                        android:text="Richy Scent Unisex - 20% oil fragrance concentration..." />
-
-                    <TextView
-                        android:id="@+id/richy_price"
-                        style="@style/PerfumesProductPrice"
-                        android:layout_below="@id/richy_title"
-                        android:text="₱499" />
-
-                    <TextView
-                        android:id="@+id/richy_offer"
-                        style="@style/PerfumesProductOffer"
-                        android:layout_below="@id/richy_price"
-                        android:text="LIVE OFF" />
-
-                    <TextView
-                        style="@style/PerfumesProductRating"
-                        android:layout_below="@id/richy_offer"
-                        android:text="★ 5.0 | 5.2K sold" />
-
-                </RelativeLayout>
-
-                <!-- Align the next row below the taller first-row card -->
                 <View
                     android:id="@+id/perfumes_second_row_anchor"
                     android:layout_width="1dp"
                     android:layout_height="1dp"
-                    android:layout_below="@id/scentricity_card"
-                    android:layout_alignBottom="@id/richy_card" />
-
-                <!-- LUMINOUS -->
-                <RelativeLayout
-                    android:id="@+id/luminous_card"
-                    style="@style/PerfumesProductCard"
-                    android:layout_below="@id/perfumes_second_row_anchor"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="14dp"
-                    android:layout_toStartOf="@id/perfumes_grid_center">
-
-                    <ImageView
-                        android:id="@+id/luminous_photo"
-                        style="@style/PerfumesProductImage"
-                        android:contentDescription="Luminous perfume"
-                        android:src="@drawable/product3" />
-
-                    <TextView
-                        android:id="@+id/luminous_title"
-                        style="@style/PerfumesProductTitle"
-                        android:layout_below="@id/luminous_photo"
-                        android:text="LUMINOUS Scent Unisex - 20% oil fragrance concentration..." />
-
-                    <TextView
-                        android:id="@+id/luminous_price"
-                        style="@style/PerfumesProductPrice"
-                        android:layout_below="@id/luminous_title"
-                        android:text="₱499" />
-
-                    <TextView
-                        android:id="@+id/luminous_offer"
-                        style="@style/PerfumesProductOffer"
-                        android:layout_below="@id/luminous_price"
-                        android:text="LIVE OFF" />
-
-                    <TextView
-                        style="@style/PerfumesProductRating"
-                        android:layout_below="@id/luminous_offer"
-                        android:text="★ 5.0 | 5.2K sold" />
-
-                </RelativeLayout>
-
-                <!-- KELSEY -->
-                <RelativeLayout
-                    android:id="@+id/kelsey_card"
-                    style="@style/PerfumesProductCard"
-                    android:layout_below="@id/perfumes_second_row_anchor"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="14dp"
-                    android:layout_toEndOf="@id/perfumes_grid_center">
-
-                    <ImageView
-                        android:id="@+id/kelsey_photo"
-                        style="@style/PerfumesProductImage"
-                        android:contentDescription="Kelsey perfume"
-                        android:src="@drawable/product4" />
-
-                    <TextView
-                        android:id="@+id/kelsey_title"
-                        style="@style/PerfumesProductTitle"
-                        android:layout_below="@id/kelsey_photo"
-                        android:text="KELSEY Scent Unisex - 20% oil fragrance concentration..." />
-
-                    <TextView
-                        android:id="@+id/kelsey_price"
-                        style="@style/PerfumesProductPrice"
-                        android:layout_below="@id/kelsey_title"
-                        android:text="₱499" />
-
-                    <TextView
-                        android:id="@+id/kelsey_offer"
-                        style="@style/PerfumesProductOffer"
-                        android:layout_below="@id/kelsey_price"
-                        android:text="LIVE OFF" />
-
-                    <TextView
-                        style="@style/PerfumesProductRating"
-                        android:layout_below="@id/kelsey_offer"
-                        android:text="★ 5.0 | 5.2K sold" />
-
-                </RelativeLayout>
+                    android:visibility="gone" />
 
                 <View
                     android:id="@+id/perfumes_third_row_anchor"
                     android:layout_width="1dp"
                     android:layout_height="1dp"
-                    android:layout_below="@id/luminous_card"
-                    android:layout_alignBottom="@id/kelsey_card" />
+                    android:visibility="gone" />
 
-                <!-- Centered final product -->
-                <RelativeLayout
-                    android:id="@+id/candice_card"
-                    style="@style/PerfumesProductCard"
-                    android:layout_width="132dp"
-                    android:layout_below="@id/perfumes_third_row_anchor"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="24dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/candice_photo"
-                        style="@style/PerfumesProductImage"
-                        android:contentDescription="Candice perfume"
-                        android:src="@drawable/product5" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/candice_title"
-                        style="@style/PerfumesProductTitle"
-                        android:layout_below="@id/candice_photo"
-                        android:text="Candice Scent Unisex - 20% oil fragrance concentration..." />
+                        <RelativeLayout
+                            android:id="@+id/scentricity_card"
+                            android:layout_width="0dp"
+                            android:layout_height="278dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/perfumes_ui_card"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="10dp">
 
-                    <TextView
-                        android:id="@+id/candice_price"
-                        style="@style/PerfumesProductPrice"
-                        android:layout_below="@id/candice_title"
-                        android:text="₱499" />
+                            <ImageView
+                                android:id="@+id/scentricity_photo"
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:layout_alignParentTop="true"
+                                android:background="@drawable/perfumes_ui_image"
+                                android:contentDescription="Scentricity perfume"
+                                android:padding="5dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/product1" />
 
-                    <TextView
-                        android:id="@+id/candice_offer"
-                        style="@style/PerfumesProductOffer"
-                        android:layout_below="@id/candice_price"
-                        android:text="LIVE OFF" />
+                            <TextView
+                                android:id="@+id/scentricity_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/scentricity_photo"
+                                android:layout_marginTop="9dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Scentricity"
+                                android:textColor="#442939"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
-                    <TextView
-                        style="@style/PerfumesProductRating"
-                        android:layout_below="@id/candice_offer"
-                        android:text="★ 5.0 | 5.2K sold" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/scentricity_title"
+                                android:layout_marginTop="3dp"
+                                android:text="Eau de Parfum · 50ml"
+                                android:textColor="#9B8991"
+                                android:textSize="11sp" />
 
-                </RelativeLayout>
+                            <TextView
+                                android:id="@+id/scentricity_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="25dp"
+                                android:text="₱499"
+                                android:textColor="#DE4773"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
 
+                            <TextView
+                                android:id="@+id/scentricity_offer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignBottom="@id/scentricity_price"
+                                android:background="@drawable/perfumes_ui_badge"
+                                android:padding="4dp"
+                                android:text="20% oil"
+                                android:textColor="#C0476B"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="★ 5.0 · 5.2K sold"
+                                android:textColor="#927E89"
+                                android:textSize="10sp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/richy_card"
+                            android:layout_width="0dp"
+                            android:layout_height="278dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/perfumes_ui_card"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:id="@+id/richy_photo"
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:layout_alignParentTop="true"
+                                android:background="@drawable/perfumes_ui_image"
+                                android:contentDescription="Richy perfume"
+                                android:padding="5dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/product2" />
+
+                            <TextView
+                                android:id="@+id/richy_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/richy_photo"
+                                android:layout_marginTop="9dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Richy"
+                                android:textColor="#442939"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/richy_title"
+                                android:layout_marginTop="3dp"
+                                android:text="Eau de Parfum · 50ml"
+                                android:textColor="#9B8991"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:id="@+id/richy_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="25dp"
+                                android:text="₱499"
+                                android:textColor="#DE4773"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/richy_offer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignBottom="@id/richy_price"
+                                android:background="@drawable/perfumes_ui_badge"
+                                android:padding="4dp"
+                                android:text="20% oil"
+                                android:textColor="#C0476B"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="★ 5.0 · 5.2K sold"
+                                android:textColor="#927E89"
+                                android:textSize="10sp" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/luminous_card"
+                            android:layout_width="0dp"
+                            android:layout_height="278dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/perfumes_ui_card"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:id="@+id/luminous_photo"
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:layout_alignParentTop="true"
+                                android:background="@drawable/perfumes_ui_image"
+                                android:contentDescription="Luminous perfume"
+                                android:padding="5dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/product3" />
+
+                            <TextView
+                                android:id="@+id/luminous_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/luminous_photo"
+                                android:layout_marginTop="9dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Luminous"
+                                android:textColor="#442939"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/luminous_title"
+                                android:layout_marginTop="3dp"
+                                android:text="Eau de Parfum · 50ml"
+                                android:textColor="#9B8991"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:id="@+id/luminous_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="25dp"
+                                android:text="₱499"
+                                android:textColor="#DE4773"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/luminous_offer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignBottom="@id/luminous_price"
+                                android:background="@drawable/perfumes_ui_badge"
+                                android:padding="4dp"
+                                android:text="20% oil"
+                                android:textColor="#C0476B"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="★ 5.0 · 5.2K sold"
+                                android:textColor="#927E89"
+                                android:textSize="10sp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/kelsey_card"
+                            android:layout_width="0dp"
+                            android:layout_height="278dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/perfumes_ui_card"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:id="@+id/kelsey_photo"
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:layout_alignParentTop="true"
+                                android:background="@drawable/perfumes_ui_image"
+                                android:contentDescription="Kelsey perfume"
+                                android:padding="5dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/product4" />
+
+                            <TextView
+                                android:id="@+id/kelsey_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/kelsey_photo"
+                                android:layout_marginTop="9dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Kelsey"
+                                android:textColor="#442939"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/kelsey_title"
+                                android:layout_marginTop="3dp"
+                                android:text="Eau de Parfum · 50ml"
+                                android:textColor="#9B8991"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:id="@+id/kelsey_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="25dp"
+                                android:text="₱499"
+                                android:textColor="#DE4773"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/kelsey_offer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignBottom="@id/kelsey_price"
+                                android:background="@drawable/perfumes_ui_badge"
+                                android:padding="4dp"
+                                android:text="20% oil"
+                                android:textColor="#C0476B"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="★ 5.0 · 5.2K sold"
+                                android:textColor="#927E89"
+                                android:textSize="10sp" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/candice_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="185dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/perfumes_ui_card"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:id="@+id/candice_photo"
+                            android:layout_width="145dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:background="@drawable/perfumes_ui_image"
+                            android:contentDescription="Candice perfume"
+                            android:padding="4dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/product5" />
+
+                        <TextView
+                            android:id="@+id/candice_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_toEndOf="@id/candice_photo"
+                            android:text="Candice"
+                            android:textColor="#442939"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/candice_title"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toEndOf="@id/candice_photo"
+                            android:text="Eau de Parfum · 50ml"
+                            android:textColor="#9B8991"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/candice_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/candice_title"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_toEndOf="@id/candice_photo"
+                            android:text="₱499"
+                            android:textColor="#DE4773"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/candice_offer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignBottom="@id/candice_price"
+                            android:background="@drawable/perfumes_ui_badge"
+                            android:padding="4dp"
+                            android:text="20% oil"
+                            android:textColor="#C0476B"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="14dp"
+                            android:layout_toEndOf="@id/candice_photo"
+                            android:text="★ 5.0 · 5.2K sold"
+                            android:textColor="#927E89"
+                            android:textSize="10sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
             </RelativeLayout>
-
-        </RelativeLayout>
-
+        </LinearLayout>
     </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/perfumes_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/cart_bottom_bar"
+        android:elevation="10dp">
+
+        <View
+            android:id="@+id/perfumes_nav_center"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/perfumes_nav_left_center"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/perfumes_nav_center"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/perfumes_nav_right_center"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/perfumes_nav_center"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/perfumes_nav_home"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Home"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_home"
+                    app:tint="#89838C" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textColor="#89838C"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/perfumes_nav_catalog"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/cart_selected_nav"
+                    android:contentDescription="Perfumes, selected"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_gift"
+                    app:tint="#E84E78" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Perfumes"
+                    android:textColor="#E84E78"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/perfumes_nav_cart"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Cart"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_cart"
+                    app:tint="#89838C" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cart"
+                    android:textColor="#89838C"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/perfumes_nav_profile"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Profile"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_profile"
+                    app:tint="#89838C" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:textColor="#89838C"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
