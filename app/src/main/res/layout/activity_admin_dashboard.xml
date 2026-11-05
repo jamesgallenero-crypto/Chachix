@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF7F9"
+    tools:context=".Admin_dashboard">
+
+    <RelativeLayout
+        android:id="@+id/admin_header"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:background="#FFFFFF"
+        android:elevation="4dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="14dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="ChaChix"
+                android:textColor="#9F254E"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.2"
+                android:text="ADMIN INVENTORY"
+                android:textColor="#9B7181"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/admin_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="Logout"
+            android:textColor="#C63A65"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/admin_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/admin_bottom_nav"
+        android:layout_below="@id/admin_header"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="18dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello, Admin!"
+                android:textColor="#482236"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Manage your fragrance stock"
+                android:textColor="#8D7781"
+                android:textSize="13sp" />
+
+            <RelativeLayout
+                android:id="@+id/admin_overview_card"
+                android:layout_width="match_parent"
+                android:layout_height="132dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/profile_header_gradient"
+                android:elevation="2dp"
+                android:padding="18dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL PRODUCTS"
+                        android:textColor="#FFF4F7"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/admin_total_products"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="0"
+                        android:textColor="#FFFFFF"
+                        android:textSize="38sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Products in your inventory"
+                        android:textColor="#FFF4F7"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="Perfume bottle"
+                    android:src="@drawable/perfume_bottle" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/admin_stock_summary"
+                android:layout_width="match_parent"
+                android:layout_height="104dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cart_surface_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="In stock"
+                        android:textColor="#81717A"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/admin_in_stock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="0"
+                        android:textColor="#25845A"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cart_surface_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Low stock"
+                        android:textColor="#81717A"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/admin_low_stock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="0"
+                        android:textColor="#D98222"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cart_surface_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Out of stock"
+                        android:textColor="#81717A"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/admin_out_stock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="0"
+                        android:textColor="#D34562"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/admin_add_product"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/cart_primary_button"
+                android:backgroundTint="@null"
+                android:text="+  Add new product"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/admin_search"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/home_redesign_search"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:drawablePadding="10dp"
+                android:drawableTint="#C9446C"
+                android:hint="Search products"
+                android:inputType="text"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:singleLine="true"
+                android:textColor="#482236"
+                android:textColorHint="#9B8992"
+                android:textSize="14sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="10dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/admin_filter_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:background="@drawable/cart_selected_nav"
+                        android:gravity="center"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:text="All"
+                        android:textColor="#C63A65"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/admin_filter_low"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_white_card"
+                        android:gravity="center"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:text="Low stock"
+                        android:textColor="#6D5862"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/admin_filter_out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_white_card"
+                        android:gravity="center"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:text="Out of stock"
+                        android:textColor="#6D5862"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <RelativeLayout
+                android:id="@+id/admin_inventory_heading"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Inventory"
+                    android:textColor="#482236"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/admin_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center"
+                    android:text="Loading..."
+                    android:textColor="#8D7781"
+                    android:textSize="11sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/admin_product_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/admin_bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/cart_bottom_bar"
+        android:elevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <TextView
+                android:id="@+id/admin_nav_dashboard"
+                style="@style/AdminNavigationItem"
+                android:drawableTop="@drawable/ic_home"
+                android:text="Home"
+                android:textColor="#C63A65" />
+
+            <TextView
+                android:id="@+id/admin_nav_inventory"
+                style="@style/AdminNavigationItem"
+                android:drawableTop="@drawable/ic_gift"
+                android:text="Inventory" />
+
+            <TextView
+                android:id="@+id/admin_nav_analytics"
+                style="@style/AdminNavigationItem"
+                android:drawableTop="@drawable/ic_rating"
+                android:text="Stats" />
+
+            <TextView
+                android:id="@+id/admin_nav_alerts"
+                style="@style/AdminNavigationItem"
+                android:drawableTop="@drawable/ic_bell"
+                android:text="Alerts" />
+
+            <TextView
+                android:id="@+id/admin_nav_profile"
+                style="@style/AdminNavigationItem"
+                android:drawableTop="@drawable/ic_profile"
+                android:text="Account" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

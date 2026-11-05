@@ -116,6 +116,8 @@ public class cart extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        CartAccountGuard.ensureFor(this,
+                com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser());
         loadCart();
     }
 
@@ -310,7 +312,7 @@ public class cart extends AppCompatActivity {
         // Remove this product and size.
         row.findViewById(R.id.cart_item_remove)
                 .setOnClickListener(view ->
-                        new AlertDialog.Builder(cart.this)
+                        new ChachixPopups.Builder(cart.this)
                                 .setTitle("Remove product?")
                                 .setMessage(
                                         item.name + " " + item.size
@@ -380,7 +382,7 @@ public class cart extends AppCompatActivity {
             return;
         }
 
-        new AlertDialog.Builder(this)
+        new ChachixPopups.Builder(this)
                 .setTitle("Clear cart?")
                 .setMessage("Remove all products from your cart?")
                 .setPositiveButton("Clear", (dialog, which) -> {
@@ -441,41 +443,12 @@ public class cart extends AppCompatActivity {
         clearButton.setEnabled(!items.isEmpty());
     }
 
+    // PHASE2_CART_CHECKOUT: proceed to the existing payment screen.
     private void showCheckoutReview() {
-        if (items.isEmpty()) {
-            return;
-        }
-
-        StringBuilder review = new StringBuilder();
-
-        for (CartItem item : items) {
-            review.append(item.name)
-                    .append(" ")
-                    .append(item.size)
-                    .append(" × ")
-                    .append(item.quantity)
-                    .append(" — ")
-                    .append(
-                            money(
-                                    (double) item.price
-                                            * item.quantity
-                            )
-                    )
-                    .append("\n");
-        }
-
-        review.append("\nTotal: ")
-                .append(money(total))
-                .append(
-                        "\n\nPayment and order submission "
-                                + "are not connected yet."
-                );
-
-        new AlertDialog.Builder(this)
-                .setTitle("Review your cart")
-                .setMessage(review.toString())
-                .setPositiveButton("OK", null)
-                .show();
+        if (items.isEmpty()) return;
+        Intent intent = new Intent(cart.this, payment.class);
+        intent.putExtra("buy_now", false);
+        startActivity(intent);
     }
 
     private void setAmount(int id, String amount) {

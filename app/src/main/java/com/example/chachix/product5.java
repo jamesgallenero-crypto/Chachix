@@ -93,7 +93,7 @@ public class product5 extends AppCompatActivity {
     }
 
     private void showSizePopup(boolean addToCartMode) {
-        Dialog dialog = new Dialog(this);
+        Dialog dialog = new Dialog(this, R.style.ChachixPopupPlainDialogTheme);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         dialog.setContentView(

@@ -110,7 +110,7 @@ public class product2 extends AppCompatActivity {
     }
 
     private void showSizeSelector() {
-        Dialog dialog = new Dialog(this);
+        Dialog dialog = new Dialog(this, R.style.ChachixPopupPlainDialogTheme);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_product2_buy);
         dialog.setCanceledOnTouchOutside(true);
@@ -179,7 +179,7 @@ public class product2 extends AppCompatActivity {
     }
 
     private void showCartPopup() {
-        Dialog dialog = new Dialog(this);
+        Dialog dialog = new Dialog(this, R.style.ChachixPopupPlainDialogTheme);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_product2_cart);
         dialog.setCanceledOnTouchOutside(true);

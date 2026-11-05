@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -100,6 +102,9 @@ public class Register extends AppCompatActivity {
         cityInput = findViewById(R.id.city);
         zipInput = findViewById(R.id.zip_code);
 
+        // Add editable dropdown suggestions for province and city.
+        setupLocationSuggestions();
+
         termsCheckbox = findViewById(R.id.terms_checkbox);
         signupButton = findViewById(R.id.signup_button);
         loginLink = findViewById(R.id.login_link);
@@ -136,6 +141,51 @@ public class Register extends AppCompatActivity {
         signupButton.setOnClickListener(view -> registerAccount());
 
         loginLink.setOnClickListener(view -> openLogin());
+    }
+
+    /**
+     * Provides local suggestions, filtered as the user types.
+     * Users can type an unlisted location; the suggestions are examples,
+     * not an exhaustive Philippine address directory.
+     */
+    private void setupLocationSuggestions() {
+        AutoCompleteTextView provinceDropdown = findViewById(R.id.province);
+        AutoCompleteTextView cityDropdown = findViewById(R.id.city);
+
+        String[] provinces = {
+                "Agusan del Norte", "Agusan del Sur", "Bukidnon",
+                "Cotabato", "Davao de Oro", "Davao del Norte",
+                "Davao del Sur", "Davao Occidental", "Davao Oriental",
+                "Davao Region", "Lanao del Norte", "Lanao del Sur",
+                "Maguindanao del Norte", "Maguindanao del Sur",
+                "Misamis Occidental", "Misamis Oriental",
+                "Sarangani", "South Cotabato", "Sultan Kudarat",
+                "Surigao del Norte", "Surigao del Sur", "Zamboanga del Norte",
+                "Zamboanga del Sur", "Zamboanga Sibugay"
+        };
+
+        String[] cities = {
+                "Butuan City", "Cagayan de Oro City", "Cotabato City",
+                "Davao City", "Digos City", "General Santos City",
+                "Island Garden City of Samal", "Kidapawan City",
+                "Koronadal City", "Malaybalay City", "Mati City",
+                "Panabo City", "Tagum City", "Valencia City",
+                "Zamboanga City"
+        };
+
+        provinceDropdown.setAdapter(new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_dropdown_item_1line,
+                provinces
+        ));
+        provinceDropdown.setThreshold(1);
+
+        cityDropdown.setAdapter(new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_dropdown_item_1line,
+                cities
+        ));
+        cityDropdown.setThreshold(1);
     }
 
     private void registerAccount() {
@@ -270,9 +320,10 @@ public class Register extends AppCompatActivity {
                         pendingUid = null;
                         pendingProfile = null;
 
-                        showMessage("Account created. Please log in.");
-
+                        ChachixSession.clear(this);
                         auth.signOut();
+                        setBusy(false);
+                        showMessage("Account created successfully! Please log in.");
                         openLogin();
                     } else {
                         setBusy(false);

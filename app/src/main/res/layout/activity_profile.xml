@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -47,7 +48,6 @@
             android:paddingEnd="8dp"
             android:paddingBottom="4dp">
 
-            <!-- HOME -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -73,7 +73,6 @@
                     android:textSize="11sp" />
             </LinearLayout>
 
-            <!-- OFFERS -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -99,7 +98,6 @@
                     android:textSize="11sp" />
             </LinearLayout>
 
-            <!-- CART -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -125,7 +123,6 @@
                     android:textSize="11sp" />
             </LinearLayout>
 
-            <!-- PROFILE: selected -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -151,7 +148,6 @@
                     android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
-
         </LinearLayout>
     </RelativeLayout>
 
@@ -160,8 +156,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/profile_navigation"
-        android:fillViewport="true"
         android:clipToPadding="false"
+        android:fillViewport="true"
         android:scrollbars="none">
 
         <LinearLayout
@@ -248,9 +244,8 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:textColor="#FFF3F6"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         tools:text="Davao City, Davao del Sur" />
-
                 </LinearLayout>
             </RelativeLayout>
 
@@ -473,8 +468,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>

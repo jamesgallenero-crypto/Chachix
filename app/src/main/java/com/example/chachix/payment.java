@@ -58,6 +58,10 @@ public class payment extends AppCompatActivity {
 
     private String selectedMethod = "Cash on delivery";
     private boolean deliveryReady;
+    // PHASE2: unique ID reused for retries; guard against double taps.
+    private boolean submitting = false;
+    private String pendingCodOrderId;
+    private CharSequence originalPlaceOrderLabel;
 
     private String cardNumber = "";
     private String cardExpiry = "";
@@ -143,6 +147,10 @@ public class payment extends AppCompatActivity {
         addressView = findViewById(R.id.payment_address);
         emptyView = findViewById(R.id.payment_empty);
         placeOrderButton = findViewById(R.id.payment_place_order);
+        originalPlaceOrderLabel = placeOrderButton.getText();
+        if (savedInstanceState != null) {
+            pendingCodOrderId = savedInstanceState.getString("phase2_order_id");
+        }
 
         codButton = findViewById(R.id.payment_cod);
         cardButton = findViewById(R.id.payment_card);
@@ -162,7 +170,7 @@ public class payment extends AppCompatActivity {
             );
         }
 
-        selectPaymentMethod(selectedMethod);
+        selectPaymentMethod("Cash on delivery"); // PHASE2: only active payment type
         updateCardLabel();
         updateOrderButton();
     }
@@ -202,13 +210,18 @@ public class payment extends AppCompatActivity {
         View.OnClickListener selectCod = view ->
                 selectPaymentMethod("Cash on delivery");
 
+        // PHASE2: keep the original buttons visible, but never collect card details.
         View.OnClickListener selectCard = view -> {
-            selectPaymentMethod("Credit/debit card");
-            showCardDetailsDialog();
+            selectPaymentMethod("Cash on delivery");
+            Toast.makeText(this, "Card payments are not available yet. Choose COD.",
+                    Toast.LENGTH_LONG).show();
         };
 
-        View.OnClickListener selectGcash = view ->
-                selectPaymentMethod("GCash");
+        View.OnClickListener selectGcash = view -> {
+            selectPaymentMethod("Cash on delivery");
+            Toast.makeText(this, "GCash payment is not available yet. Choose COD.",
+                    Toast.LENGTH_LONG).show();
+        };
 
         codButton.setOnClickListener(selectCod);
         findViewById(R.id.payment_cod_row).setOnClickListener(selectCod);
@@ -231,7 +244,7 @@ public class payment extends AppCompatActivity {
 
         FirebaseUser user = auth.getCurrentUser();
 
-        if (user == null) {
+        if (user == null || !ChachixSession.isAllowed(this, user)) {
             Intent intent = new Intent(this, MainActivity.class);
 
             intent.addFlags(
@@ -250,6 +263,7 @@ public class payment extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        CartAccountGuard.ensureFor(this, auth.getCurrentUser());
         loadCart();
     }
 
@@ -356,7 +370,7 @@ public class payment extends AppCompatActivity {
             return;
         }
 
-        new AlertDialog.Builder(this)
+        new ChachixPopups.Builder(this)
                 .setTitle("Delivery information")
                 .setMessage(
                         recipientView.getText()
@@ -569,7 +583,7 @@ public class payment extends AppCompatActivity {
 
         row.findViewById(R.id.cart_item_remove)
                 .setOnClickListener(view ->
-                        new AlertDialog.Builder(this)
+                        new ChachixPopups.Builder(this)
                                 .setTitle("Remove product?")
                                 .setMessage(item.name + " " + item.size)
                                 .setPositiveButton(
@@ -653,7 +667,7 @@ public class payment extends AppCompatActivity {
     }
 
     private void updateOrderButton() {
-        boolean enabled = deliveryReady && !items.isEmpty();
+        boolean enabled = deliveryReady && !items.isEmpty() && !submitting;
 
         placeOrderButton.setEnabled(enabled);
         placeOrderButton.setAlpha(enabled ? 1f : 0.5f);
@@ -727,7 +741,7 @@ public class payment extends AppCompatActivity {
         expiryInput.setSaveEnabled(false);
         form.addView(expiryInput);
 
-        AlertDialog dialog = new AlertDialog.Builder(this)
+        AlertDialog dialog = new ChachixPopups.Builder(this)
                 .setTitle("Credit/debit card")
                 .setView(form)
                 .setPositiveButton("Save details", null)
@@ -823,67 +837,110 @@ public class payment extends AppCompatActivity {
                 || (year == currentYear && month >= currentMonth);
     }
 
+    // PHASE2_COD_CHECKOUT: confirm a real Firestore order request.
     private void reviewOrder() {
+        if (submitting) return;
+        FirebaseUser user = auth.getCurrentUser();
+        if (user == null || !ChachixSession.isAllowed(this, user)) {
+            Toast.makeText(this, "Please log in again.", Toast.LENGTH_LONG).show();
+            return;
+        }
         if (!deliveryReady || items.isEmpty()) {
-            Toast.makeText(
-                    this,
+            Toast.makeText(this,
                     "Load complete delivery details and add a product first.",
-                    Toast.LENGTH_LONG
-            ).show();
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (!"Cash on delivery".equals(selectedMethod)) {
+            Toast.makeText(this, "Only Cash on Delivery is available.",
+                    Toast.LENGTH_LONG).show();
             return;
         }
 
-        if ("Credit/debit card".equals(selectedMethod)
-                && !cardDetailsConfirmed) {
-            showCardDetailsDialog();
-            return;
-        }
-
-        StringBuilder review = new StringBuilder();
-
-        review.append(recipientView.getText())
-                .append("\n")
-                .append(addressView.getText())
-                .append("\n\nProducts:\n");
-
+        // PHASE3_POPUP_REDESIGN: structured, scrollable COD confirmation.
+        ArrayList<ChachixPopups.OrderLine> summaryLines = new ArrayList<>();
         for (CartItem item : items) {
-            review.append(item.name)
-                    .append(" ")
-                    .append(item.size)
-                    .append(" × ")
-                    .append(item.quantity)
-                    .append(" — ")
-                    .append(money((double) item.price * item.quantity))
-                    .append("\n");
+            summaryLines.add(new ChachixPopups.OrderLine(
+                    item.name + " " + item.size + " × " + item.quantity,
+                    money((double) item.price * item.quantity)));
         }
-
-        review.append("\nProduct discount: -")
-                .append(money(discount))
-                .append("\nShipping: ")
-                .append(money(shipping))
-                .append("\nTotal: ")
-                .append(money(total))
-                .append("\nPayment method: ")
-                .append(selectedMethod);
-
-        if ("Credit/debit card".equals(selectedMethod)) {
-            review.append("\nCard ending in ")
-                    .append(cardNumber.substring(cardNumber.length() - 4))
-                    .append("\nExpiry: ")
-                    .append(cardExpiry);
-        }
-
-        review.append(
-                "\n\nPreview only. No order has been submitted "
-                        + "and no payment has been charged."
-        );
-
-        new AlertDialog.Builder(this)
-                .setTitle("Review order")
-                .setMessage(review.toString())
-                .setPositiveButton("OK", null)
-                .show();
+        ChachixPopups.showCodConfirmation(
+                this,
+                recipientView.getText().toString(),
+                addressView.getText().toString(),
+                summaryLines,
+                money(discount), money(shipping), money(total),
+                this::submitCodOrder);
     }
+
+    private void submitCodOrder() {
+        if (submitting || !deliveryReady || items.isEmpty()) return;
+        FirebaseUser user = auth.getCurrentUser();
+        if (user == null || !ChachixSession.isAllowed(this, user)) {
+            Toast.makeText(this, "Please log in again.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        ArrayList<CodOrders.Item> selectedItems = new ArrayList<>();
+        for (CartItem item : items) {
+            selectedItems.add(new CodOrders.Item(item.key, item.name, item.size,
+                    (long) item.price * 100L, item.quantity));
+        }
+        if (pendingCodOrderId == null) {
+            pendingCodOrderId = CodOrders.newOrderId();
+        }
+
+        submitting = true;
+        placeOrderButton.setText("PLACING ORDER...");
+        updateOrderButton();
+        try {
+            CodOrders.submit(pendingCodOrderId, user,
+                    recipientView.getText().toString(),
+                    addressView.getText().toString(),
+                    selectedItems,
+                    Math.round(discount * 100.0),
+                    Math.round(shipping * 100.0),
+                    Math.round(total * 100.0))
+                    .addOnCompleteListener(this, task -> {
+                        submitting = false;
+                        placeOrderButton.setText(originalPlaceOrderLabel);
+                        updateOrderButton();
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(this,
+                                    "Order not confirmed. Check My Orders before retrying. "
+                                            + "If it isn't listed, check your connection and rules.",
+                                    Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        String createdId = pendingCodOrderId;
+                        pendingCodOrderId = null;
+                        // A Buy Now purchase must not remove other cart items.
+                        if (!buyNowMode) {
+                            SharedPreferences.Editor editor = preferences.edit();
+                            for (CartItem item : items) {
+                                editor.remove(item.key + "_name");
+                                editor.remove(item.key + "_size");
+                                editor.remove(item.key + "_price");
+                                editor.remove(item.key + "_quantity");
+                            }
+                            editor.apply();
+                        }
+                        ChachixPopups.showOrderSuccess(
+                                this, createdId,
+                                () -> {
+                                    startActivity(OrderHistoryActivity.forFilter(this, "all"));
+                                    finish();
+                                },
+                                this::finish);
+                    });
+        } catch (IllegalArgumentException | ArithmeticException error) {
+            submitting = false;
+            placeOrderButton.setText(originalPlaceOrderLabel);
+            updateOrderButton();
+            Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     private int getProductImage(String key) {
         if (key.startsWith("richy_")) {
@@ -947,6 +1004,7 @@ public class payment extends AppCompatActivity {
         }
 
         outState.putString("payment_method", selectedMethod);
+        outState.putString("phase2_order_id", pendingCodOrderId);
 
         super.onSaveInstanceState(outState);
     }

@@ -1,4 +1,3 @@
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -28,9 +27,13 @@
             <RelativeLayout
                 android:id="@+id/register_header"
                 android:layout_width="match_parent"
-                android:layout_height="136dp"
+                android:layout_height="wrap_content"
+                android:minHeight="156dp"
                 android:background="@drawable/register_modern_header"
-                android:padding="16dp">
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="20dp">
 
                 <TextView
                     android:id="@+id/register_brand"
@@ -139,7 +142,7 @@
                                 android:autofillHints="name"
                                 android:hint="Enter your full name"
                                 android:imeOptions="actionNext"
-                                android:inputType="textPersonName|textCapWords"
+                                android:inputType="textCapWords|textAutoCorrect"
                                 android:paddingStart="15dp"
                                 android:paddingEnd="15dp"
                                 android:singleLine="true"
@@ -365,7 +368,7 @@
                         android:autofillHints="postalAddress"
                         android:hint="e.g. Rizal St., House 12"
                         android:imeOptions="actionNext"
-                        android:inputType="textPostalAddress"
+                        android:inputType="textCapWords|textAutoCorrect"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
                         android:singleLine="true"
@@ -385,7 +388,7 @@
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                         android:id="@+id/province"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
@@ -393,8 +396,9 @@
                         android:background="@drawable/register_modern_input"
                         android:backgroundTint="@null"
                         android:hint="e.g. Davao del Sur"
+                        android:completionThreshold="1"
                         android:imeOptions="actionNext"
-                        android:inputType="textCapWords"
+                        android:inputType="textCapWords|textAutoCorrect"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
                         android:singleLine="true"
@@ -414,7 +418,7 @@
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                         android:id="@+id/city"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
@@ -422,8 +426,9 @@
                         android:background="@drawable/register_modern_input"
                         android:backgroundTint="@null"
                         android:hint="e.g. Davao City"
+                        android:completionThreshold="1"
                         android:imeOptions="actionNext"
-                        android:inputType="textCapWords"
+                        android:inputType="textCapWords|textAutoCorrect"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
                         android:singleLine="true"

@@ -2,12 +2,20 @@ package com.example.chachix;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
+import android.view.autofill.AutofillManager;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +25,22 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
+
+    private static final String[] EMAIL_DOMAINS = {
+            "gmail.com", "yahoo.com", "yahoo.com.ph", "outlook.com",
+            "hotmail.com", "icloud.com", "live.com", "proton.me"
+    };
 
     private FirebaseAuth auth;
 
-    private EditText emailInput;
+    private AutoCompleteTextView emailInput;
     private EditText passwordInput;
+    private CheckBox rememberAccount;
     private TextView loginButton;
     private View createAccount;
     private View forgotPassword;
@@ -68,32 +86,43 @@ public class MainActivity extends AppCompatActivity {
 
             return insets;
         });
-
         ViewCompat.requestApplyInsets(main);
 
-        // Keep your existing XML IDs.
+        // Keep all existing view IDs from activity_main.xml.
         emailInput = findViewById(R.id.username);
         passwordInput = findViewById(R.id.password);
         loginButton = findViewById(R.id.login_button);
         createAccount = findViewById(R.id.create_account);
         forgotPassword = findViewById(R.id.forgot_password);
+        rememberAccount = findViewById(R.id.remember_account);
 
         TextView emailLabel = findViewById(R.id.username_label);
         emailLabel.setText("Email Address");
 
         emailInput.setHint("Enter your email address");
         emailInput.setInputType(
-                android.text.InputType.TYPE_CLASS_TEXT
-                        | android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
         );
-        emailInput.setAutofillHints(View.AUTOFILL_HINT_EMAIL_ADDRESS);
+        emailInput.setAutofillHints(
+                View.AUTOFILL_HINT_USERNAME,
+                View.AUTOFILL_HINT_EMAIL_ADDRESS
+        );
+        passwordInput.setAutofillHints(View.AUTOFILL_HINT_PASSWORD);
+
+        setupEmailSuggestions();
+
+        // Never save a plaintext password. Firebase handles auth sessions.
+        boolean remembered = ChachixSession.isRemembered(this);
+        rememberAccount.setChecked(remembered);
+        if (remembered) {
+            emailInput.setText(ChachixSession.rememberedEmail(this));
+            emailInput.setSelection(emailInput.length());
+        }
 
         loginButton.setOnClickListener(view -> login());
 
         createAccount.setOnClickListener(view ->
-                startActivity(
-                        new Intent(MainActivity.this, Register.class)
-                )
+                startActivity(new Intent(MainActivity.this, Register.class))
         );
 
         forgotPassword.setOnClickListener(view -> resetPassword());
@@ -103,8 +132,69 @@ public class MainActivity extends AppCompatActivity {
                 login();
                 return true;
             }
-
             return false;
+        });
+
+        FirebaseUser restoredUser = auth.getCurrentUser();
+        if (restoredUser != null) {
+            if (ChachixSession.isAllowed(this, restoredUser)) {
+                setBusy(true);
+                validateAndContinue(restoredUser, true);
+            } else {
+                auth.signOut();
+                ChachixSession.clear(this);
+            }
+        }
+    }
+
+    private void setupEmailSuggestions() {
+        ArrayAdapter<String> suggestionsAdapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_dropdown_item_1line,
+                new ArrayList<>()
+        );
+        emailInput.setAdapter(suggestionsAdapter);
+        emailInput.setThreshold(1);
+
+        emailInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String entered = s.toString().trim();
+                int at = entered.indexOf('@');
+                List<String> matches = new ArrayList<>();
+
+                if (at > 0 && at == entered.lastIndexOf('@')) {
+                    String name = entered.substring(0, at);
+                    String typedDomain = entered.substring(at + 1).toLowerCase(Locale.ROOT);
+                    for (String domain : EMAIL_DOMAINS) {
+                        if (domain.startsWith(typedDomain)
+                                && !domain.equals(typedDomain)) {
+                            matches.add(name + "@" + domain);
+                        }
+                    }
+                }
+
+                suggestionsAdapter.clear();
+                suggestionsAdapter.addAll(matches);
+                suggestionsAdapter.notifyDataSetChanged();
+
+                if (!matches.isEmpty() && emailInput.hasFocus()) {
+                    // Show completions beneath the email field, not from a server.
+                    emailInput.post(() -> {
+                        if (emailInput.hasFocus() && suggestionsAdapter.getCount() > 0) {
+                            emailInput.showDropDown();
+                        }
+                    });
+                } else {
+                    emailInput.dismissDropDown();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
         });
     }
 
@@ -114,14 +204,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String email = validEmail();
-
         if (email == null) {
             return;
         }
 
-        // Do not trim passwords.
+        // Do not trim or locally save passwords.
         String password = passwordInput.getText().toString();
-
         if (password.isEmpty()) {
             passwordInput.setError("Enter your password");
             passwordInput.requestFocus();
@@ -133,28 +221,62 @@ public class MainActivity extends AppCompatActivity {
 
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
-                    setBusy(false);
-
-                    if (task.isSuccessful()) {
-                        Intent intent =
-                                new Intent(MainActivity.this, Dashboard.class);
-
-                        intent.addFlags(
-                                Intent.FLAG_ACTIVITY_NEW_TASK
-                                        | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        );
-
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(
-                                MainActivity.this,
-                                "Unable to log in. Check your email, "
-                                        + "password, and internet connection.",
-                                Toast.LENGTH_LONG
-                        ).show();
+                    if (!task.isSuccessful() || auth.getCurrentUser() == null) {
+                        setBusy(false);
+                        Toast.makeText(this,
+                                "Unable to log in. Check your email, password, and connection.",
+                                Toast.LENGTH_LONG).show();
+                        return;
                     }
+                    // Must refresh account status before granting access.
+                    validateAndContinue(auth.getCurrentUser(), false);
                 });
+    }
+
+    private void validateAndContinue(FirebaseUser user, boolean restoringSession) {
+        setBusy(true);
+        user.reload().addOnCompleteListener(this, task -> {
+            if (!task.isSuccessful() || auth.getCurrentUser() == null
+                    || !user.getUid().equals(auth.getCurrentUser().getUid())) {
+                endInvalidSession("Could not verify your account status. Check your connection and sign in again.");
+                return;
+            }
+
+            // Refresh the Firebase ID token before opening the dashboard.
+            user.getIdToken(true).addOnCompleteListener(this, tokenTask -> {
+                if (!tokenTask.isSuccessful()) {
+                    endInvalidSession("Could not validate your session. Please sign in again.");
+                    return;
+                }
+                if (restoringSession) {
+                    // The remembered UID was already checked before reload().
+                    if (!ChachixSession.isAllowed(this, user)) {
+                        endInvalidSession("Please sign in again.");
+                        return;
+                    }
+                } else {
+                    ChachixSession.afterSuccessfulLogin(this, user, rememberAccount.isChecked());
+                    // The Android password manager may offer to save credentials.
+                    AutofillManager autofill = getSystemService(AutofillManager.class);
+                    if (autofill != null) autofill.commit();
+                }
+                openDashboard();
+            });
+        });
+    }
+
+    private void endInvalidSession(String message) {
+        auth.signOut();
+        ChachixSession.clear(this);
+        setBusy(false);
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    private void openDashboard() {
+        Intent intent = new Intent(MainActivity.this, Dashboard.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private void resetPassword() {
@@ -163,7 +285,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String email = validEmail();
-
         if (email == null) {
             return;
         }
@@ -173,7 +294,6 @@ public class MainActivity extends AppCompatActivity {
         auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(this, task -> {
                     setBusy(false);
-
                     if (task.isSuccessful()) {
                         Toast.makeText(
                                 MainActivity.this,
@@ -207,7 +327,6 @@ public class MainActivity extends AppCompatActivity {
             emailInput.requestFocus();
             return null;
         }
-
         return email;
     }
 
@@ -219,6 +338,7 @@ public class MainActivity extends AppCompatActivity {
         forgotPassword.setEnabled(!value);
         emailInput.setEnabled(!value);
         passwordInput.setEnabled(!value);
+        rememberAccount.setEnabled(!value);
 
         if (!value) {
             loginButton.setText("LOGIN");

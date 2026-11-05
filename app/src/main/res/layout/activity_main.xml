@@ -1,4 +1,4 @@
-
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -69,7 +69,6 @@
                     android:text="Find a scent that feels like you"
                     android:textColor="#916575"
                     android:textSize="12sp" />
-
             </RelativeLayout>
 
             <!-- LOGIN CARD -->
@@ -111,30 +110,31 @@
                         android:textColor="#927F88"
                         android:textSize="13sp" />
 
-                    <!-- USERNAME LABEL -->
+                    <!-- EMAIL LABEL -->
                     <TextView
                         android:id="@+id/username_label"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="26dp"
                         android:labelFor="@id/username"
-                        android:text="Username"
+                        android:text="Email Address"
                         android:textColor="#513944"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
-                    <!-- USERNAME INPUT -->
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <!-- EMAIL: EDITABLE DROPDOWN + EMAIL KEYBOARD + AUTOFILL -->
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                         android:id="@+id/username"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/chachix_login_input"
                         android:backgroundTint="@null"
-                        android:autofillHints="username"
-                        android:hint="Enter your username"
+                        android:autofillHints="emailAddress"
+                        android:completionThreshold="1"
+                        android:hint="Enter your email address"
                         android:imeOptions="actionNext"
-                        android:inputType="textNoSuggestions"
+                        android:inputType="textEmailAddress"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
                         android:singleLine="true"
@@ -154,7 +154,7 @@
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
-                    <!-- PASSWORD INPUT -->
+                    <!-- PASSWORD: NO AUTOCORRECT, PASSWORD MANAGER AUTOFILL -->
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/password"
                         android:layout_width="match_parent"
@@ -172,6 +172,19 @@
                         android:textColor="#402934"
                         android:textColorHint="#A99AA2"
                         android:textSize="14sp" />
+
+                    <!-- REMEMBER ME: OPT-IN SESSION PERSISTENCE -->
+                    <CheckBox
+                        android:id="@+id/remember_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:buttonTint="#D64C78"
+                        android:minHeight="48dp"
+                        android:checked="false"
+                        android:text="Remember me on this device"
+                        android:textColor="#513944"
+                        android:textSize="13sp" />
 
                     <!-- FORGOT PASSWORD -->
                     <TextView
@@ -248,10 +261,9 @@
                             android:layout_height="1dp"
                             android:layout_weight="1"
                             android:background="#EBDDE4" />
-
                     </LinearLayout>
 
-                    <!-- SOCIAL LOGIN BUTTONS -->
+                    <!-- SOCIAL LOGIN BUTTONS (EXISTING BEHAVIOR UNCHANGED) -->
                     <RelativeLayout
                         android:id="@+id/social_buttons"
                         android:layout_width="match_parent"
@@ -263,7 +275,6 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <!-- FACEBOOK -->
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/facebook_button"
                                 android:layout_width="0dp"
@@ -281,7 +292,6 @@
                                 android:textStyle="bold"
                                 android:contentDescription="Facebook sign-in" />
 
-                            <!-- GOOGLE -->
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/google_button"
                                 android:layout_width="0dp"
@@ -299,10 +309,8 @@
                                 android:textSize="13sp"
                                 android:textStyle="bold"
                                 android:contentDescription="Google sign-in" />
-
                         </LinearLayout>
                     </RelativeLayout>
-
                 </LinearLayout>
             </RelativeLayout>
 
@@ -315,7 +323,6 @@
                 android:text="ChaChix Scents PH"
                 android:textColor="#A88492"
                 android:textSize="11sp" />
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

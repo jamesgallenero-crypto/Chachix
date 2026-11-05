@@ -121,7 +121,7 @@ public class Profile extends AppCompatActivity {
         );
 
         View.OnClickListener showDetails = view ->
-                new AlertDialog.Builder(Profile.this)
+                new ChachixPopups.Builder(Profile.this)
                         .setTitle("Your profile")
                         .setMessage(
                                 nameView.getText()
@@ -134,44 +134,21 @@ public class Profile extends AppCompatActivity {
         initialsView.setOnClickListener(showDetails);
     }
 
+    // PHASE2_ORDER_HISTORY: reuse existing Profile XML IDs.
     private void setupPurchases() {
         findViewById(R.id.purchase_history).setOnClickListener(view ->
-                showPurchaseInformation("Purchase history")
-        );
-
+                startActivity(OrderHistoryActivity.forFilter(this, "all")));
         findViewById(R.id.to_pay).setOnClickListener(view ->
-                showPurchaseInformation("To pay")
-        );
-
+                startActivity(OrderHistoryActivity.forFilter(this, "to_pay")));
         findViewById(R.id.to_ship).setOnClickListener(view ->
-                showPurchaseInformation("To ship")
-        );
-
+                startActivity(OrderHistoryActivity.forFilter(this, "to_ship")));
         findViewById(R.id.to_receive).setOnClickListener(view ->
-                showPurchaseInformation("To receive")
-        );
-
+                startActivity(OrderHistoryActivity.forFilter(this, "to_receive")));
         findViewById(R.id.to_rate).setOnClickListener(view ->
-                showPurchaseInformation("To rate")
-        );
+                startActivity(OrderHistoryActivity.forFilter(this, "to_rate")));
     }
 
-    private void showPurchaseInformation(String title) {
-        new AlertDialog.Builder(this)
-                .setTitle(title)
-                .setMessage(
-                        "Order history and delivery status are not "
-                                + "connected yet. Adding an item to the "
-                                + "cart does not create an order."
-                )
-                .setPositiveButton(
-                        "Browse perfumes",
-                        (dialog, which) ->
-                                openScreen(activity_perfumes.class)
-                )
-                .setNegativeButton("Close", null)
-                .show();
-    }
+
 
     private void setupWishlist() {
         findViewById(R.id.view_wishlist).setOnClickListener(view ->
@@ -224,7 +201,7 @@ public class Profile extends AppCompatActivity {
             });
 
             favorite.setOnClickListener(view ->
-                    new AlertDialog.Builder(Profile.this)
+                    new ChachixPopups.Builder(Profile.this)
                             .setTitle("Remove from wishlist?")
                             .setMessage(title.getText())
                             .setPositiveButton("Remove", (dialog, which) ->
@@ -268,7 +245,7 @@ public class Profile extends AppCompatActivity {
     }
 
     private void showCartPopup(int product) {
-        Dialog dialog = new Dialog(this);
+        Dialog dialog = new Dialog(this, R.style.ChachixPopupPlainDialogTheme);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         int layout;

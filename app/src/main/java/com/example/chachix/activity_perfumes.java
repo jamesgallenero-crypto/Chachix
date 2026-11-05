@@ -210,7 +210,7 @@ public class activity_perfumes extends AppCompatActivity {
         }
 
         if (matchingNames.isEmpty()) {
-            new AlertDialog.Builder(this)
+            new ChachixPopups.Builder(this)
                     .setTitle("No products found")
                     .setMessage(
                             "No product matches \""
@@ -228,7 +228,7 @@ public class activity_perfumes extends AppCompatActivity {
             return;
         }
 
-        new AlertDialog.Builder(this)
+        new ChachixPopups.Builder(this)
                 .setTitle("Search results")
                 .setItems(
                         matchingNames.toArray(new String[0]),

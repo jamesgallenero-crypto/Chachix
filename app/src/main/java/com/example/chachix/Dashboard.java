@@ -114,7 +114,9 @@ public class Dashboard extends AppCompatActivity {
 
         FirebaseUser user = auth.getCurrentUser();
 
-        if (user == null) {
+        if (!ChachixSession.isAllowed(this, user)) {
+            ChachixSession.clear(this);
+            auth.signOut();
             Intent intent = new Intent(Dashboard.this, MainActivity.class);
 
             intent.addFlags(
@@ -127,6 +129,7 @@ public class Dashboard extends AppCompatActivity {
             return;
         }
 
+        CartAccountGuard.ensureFor(this, user); // PHASE2
         listenToUserProfile(user);
     }
 
@@ -254,7 +257,7 @@ public class Dashboard extends AppCompatActivity {
         }
 
         if (matches.isEmpty()) {
-            new AlertDialog.Builder(this)
+            new ChachixPopups.Builder(this)
                     .setTitle("No products found")
                     .setMessage(
                             "Try Richy, Scentricity, Luminous, Kelsey, or Candice."
@@ -265,7 +268,7 @@ public class Dashboard extends AppCompatActivity {
             return;
         }
 
-        new AlertDialog.Builder(this)
+        new ChachixPopups.Builder(this)
                 .setTitle("Search results")
                 .setItems(
                         matches.toArray(new String[0]),
@@ -285,7 +288,7 @@ public class Dashboard extends AppCompatActivity {
         );
 
         findViewById(R.id.notifications_button).setOnClickListener(view ->
-                new AlertDialog.Builder(this)
+                new ChachixPopups.Builder(this)
                         .setTitle("Notifications")
                         .setMessage("Notifications are not connected yet.")
                         .setPositiveButton("OK", null)
@@ -295,7 +298,7 @@ public class Dashboard extends AppCompatActivity {
 
     private void setupOffers() {
         findViewById(R.id.offer_banner).setOnClickListener(view ->
-                new AlertDialog.Builder(this)
+                new ChachixPopups.Builder(this)
                         .setTitle("ChaChix Scents Perfume Bar")
                         .setMessage(
                                 "Bring ChaChix Scents Perfume Bar to "

@@ -273,7 +273,7 @@ public class setting extends AppCompatActivity {
         }
 
         if (!usesPassword) {
-            new AlertDialog.Builder(this)
+            new ChachixPopups.Builder(this)
                     .setTitle("Change Password")
                     .setMessage(
                             "This account uses another sign-in provider. "
@@ -297,7 +297,7 @@ public class setting extends AppCompatActivity {
             return;
         }
 
-        new AlertDialog.Builder(this)
+        new ChachixPopups.Builder(this)
                 .setTitle("Change Password")
                 .setMessage(
                         "Send a password reset link to:\n\n"
@@ -334,7 +334,7 @@ public class setting extends AppCompatActivity {
                     changePasswordButton.setAlpha(1f);
 
                     if (task.isSuccessful()) {
-                        new AlertDialog.Builder(setting.this)
+                        new ChachixPopups.Builder(setting.this)
                                 .setTitle("Reset email sent")
                                 .setMessage(
                                         "Check " + email
@@ -389,7 +389,7 @@ public class setting extends AppCompatActivity {
     }
 
     private void showHelp() {
-        new AlertDialog.Builder(this)
+        new ChachixPopups.Builder(this)
                 .setTitle("Help & Support")
                 .setMessage(
                         "Edit Profile\n"
@@ -412,7 +412,7 @@ public class setting extends AppCompatActivity {
     }
 
     private void showAbout() {
-        new AlertDialog.Builder(this)
+        new ChachixPopups.Builder(this)
                 .setTitle("About Chachix")
                 .setMessage(
                         "Chachix is a perfume shopping app.\n\n"
@@ -425,13 +425,14 @@ public class setting extends AppCompatActivity {
     }
 
     private void confirmLogout() {
-        new AlertDialog.Builder(this)
+        new ChachixPopups.Builder(this)
                 .setTitle("Logout")
                 .setMessage("Do you want to log out of your account?")
                 .setPositiveButton(
                         "Logout",
                         (dialog, which) -> {
                             stopProfileListener();
+                            ChachixSession.clear(setting.this);
                             auth.signOut();
                             openLogin();
                         }

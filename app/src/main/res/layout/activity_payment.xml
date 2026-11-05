@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF7F9"
+    android:background="#FFF8FA"
     tools:context=".payment">
 
     <LinearLayout
@@ -12,7 +13,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- CHECKOUT HEADER -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -41,10 +41,8 @@
                 android:textColor="#642B40"
                 android:textSize="23sp"
                 android:textStyle="bold" />
-
         </RelativeLayout>
 
-        <!-- SCROLLABLE CONTENT -->
         <ScrollView
             android:id="@+id/payment_scroll"
             android:layout_width="match_parent"
@@ -63,7 +61,6 @@
                 android:paddingEnd="16dp"
                 android:paddingBottom="28dp">
 
-                <!-- DELIVERY INFORMATION -->
                 <RelativeLayout
                     android:id="@+id/payment_delivery_card"
                     android:layout_width="match_parent"
@@ -93,7 +90,6 @@
                         android:layout_marginTop="14dp"
                         android:background="#F2E4EA" />
 
-                    <!-- FIREBASE RECIPIENT -->
                     <TextView
                         android:id="@+id/payment_recipient"
                         android:layout_width="match_parent"
@@ -106,7 +102,6 @@
                         android:textStyle="bold"
                         tools:text="Gabriel Gallenero  09123456789" />
 
-                    <!-- FIREBASE ADDRESS -->
                     <TextView
                         android:id="@+id/payment_address"
                         android:layout_width="match_parent"
@@ -117,10 +112,8 @@
                         android:textColor="#83717C"
                         android:textSize="13sp"
                         tools:text="Rizal Street&#10;Davao City, Davao del Sur 8000" />
-
                 </RelativeLayout>
 
-                <!-- PRODUCTS HEADING -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -131,7 +124,6 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <!-- SELECTED PRODUCTS -->
                 <RelativeLayout
                     android:id="@+id/payment_products"
                     android:layout_width="match_parent"
@@ -140,13 +132,11 @@
                     android:elevation="2dp"
                     android:padding="14dp">
 
-                    <!-- PRODUCTS LOADED BY JAVA -->
                     <RelativeLayout
                         android:id="@+id/payment_items_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <!-- EMPTY PRODUCTS -->
                     <TextView
                         android:id="@+id/payment_empty"
                         android:layout_width="match_parent"
@@ -159,10 +149,8 @@
                         android:textSize="13sp"
                         android:visibility="gone"
                         tools:visibility="visible" />
-
                 </RelativeLayout>
 
-                <!-- ORDER SUMMARY CARD -->
                 <RelativeLayout
                     android:id="@+id/payment_summary_card"
                     android:layout_width="match_parent"
@@ -177,7 +165,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <!-- ORDER SUMMARY TITLE -->
                         <TextView
                             android:id="@+id/payment_summary_heading"
                             android:layout_width="match_parent"
@@ -187,7 +174,6 @@
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
-                        <!-- PRODUCT SUBTOTAL -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -211,10 +197,8 @@
                                 android:textColor="#332B33"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
-
                         </LinearLayout>
 
-                        <!-- ORIGINAL PRICE -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -237,10 +221,8 @@
                                 android:text="₱0.00"
                                 android:textColor="#665965"
                                 android:textSize="13sp" />
-
                         </LinearLayout>
 
-                        <!-- PRODUCT DISCOUNT -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -263,10 +245,8 @@
                                 android:text="-₱0.00"
                                 android:textColor="#DE4D78"
                                 android:textSize="13sp" />
-
                         </LinearLayout>
 
-                        <!-- SHIPPING SUBTOTAL -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -291,10 +271,8 @@
                                 android:textColor="#332B33"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
-
                         </LinearLayout>
 
-                        <!-- SHIPPING FEE -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -317,10 +295,8 @@
                                 android:text="₱0.00"
                                 android:textColor="#665965"
                                 android:textSize="13sp" />
-
                         </LinearLayout>
 
-                        <!-- SHIPPING DISCOUNT -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -343,10 +319,8 @@
                                 android:text="-₱0.00"
                                 android:textColor="#DE4D78"
                                 android:textSize="13sp" />
-
                         </LinearLayout>
 
-                        <!-- DIVIDER -->
                         <View
                             android:id="@+id/payment_summary_divider"
                             android:layout_width="match_parent"
@@ -354,7 +328,6 @@
                             android:layout_marginTop="18dp"
                             android:background="#EEDFE5" />
 
-                        <!-- CALCULATED TOTAL -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -379,10 +352,8 @@
                                 android:textColor="#DB4472"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
-
                         </LinearLayout>
 
-                        <!-- PAYMENT METHOD TITLE -->
                         <TextView
                             android:id="@+id/payment_method_heading"
                             android:layout_width="match_parent"
@@ -402,7 +373,6 @@
                             android:textColor="#988791"
                             android:textSize="12sp" />
 
-                        <!-- CASH ON DELIVERY -->
                         <RelativeLayout
                             android:id="@+id/payment_cod_row"
                             android:layout_width="match_parent"
@@ -437,10 +407,8 @@
                                 android:text="Cash on delivery"
                                 android:textColor="#493441"
                                 android:textSize="13sp" />
-
                         </RelativeLayout>
 
-                        <!-- CREDIT OR DEBIT CARD -->
                         <RelativeLayout
                             android:id="@+id/payment_card_row"
                             android:layout_width="match_parent"
@@ -474,10 +442,8 @@
                                 android:text="Credit / debit card"
                                 android:textColor="#493441"
                                 android:textSize="13sp" />
-
                         </RelativeLayout>
 
-                        <!-- GCASH -->
                         <RelativeLayout
                             android:id="@+id/payment_gcash_row"
                             android:layout_width="match_parent"
@@ -511,18 +477,12 @@
                                 android:text="GCash"
                                 android:textColor="#493441"
                                 android:textSize="13sp" />
-
                         </RelativeLayout>
-
                     </LinearLayout>
-
                 </RelativeLayout>
-
             </LinearLayout>
-
         </ScrollView>
 
-        <!-- FIXED PLACE ORDER FOOTER -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="114dp"
@@ -533,7 +493,6 @@
             android:paddingEnd="16dp"
             android:paddingBottom="10dp">
 
-            <!-- ITEM COUNT -->
             <TextView
                 android:id="@+id/payment_item_count"
                 android:layout_width="wrap_content"
@@ -544,7 +503,6 @@
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
-            <!-- FINAL TOTAL -->
             <TextView
                 android:id="@+id/payment_bottom_total"
                 android:layout_width="wrap_content"
@@ -555,7 +513,6 @@
                 android:textSize="19sp"
                 android:textStyle="bold" />
 
-            <!-- PLACE ORDER -->
             <TextView
                 android:id="@+id/payment_place_order"
                 android:layout_width="match_parent"
@@ -569,9 +526,6 @@
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:textStyle="bold" />
-
         </RelativeLayout>
-
     </LinearLayout>
-
 </RelativeLayout>
