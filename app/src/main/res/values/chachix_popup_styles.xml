@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Explicitly light even when the phone is in Dark Mode. -->
+    <style name="ChachixPopupDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/chachix_popup_background</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="android:windowMinWidthMajor">75%</item>
+        <item name="colorAccent">#C6436D</item>
+        <item name="android:colorAccent">#C6436D</item>
+        <item name="android:textColorPrimary">#64283F</item>
+        <item name="android:textColorSecondary">#835E6E</item>
+        <item name="android:fontFamily">sans</item>
+    </style>
+
+    <!-- Keeps legacy custom Dialog windows in the same light color family. -->
+    <style name="ChachixPopupPlainDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@drawable/chachix_popup_background</item>
+        <item name="colorAccent">#C6436D</item>
+        <item name="android:colorAccent">#C6436D</item>
+        <item name="android:textColorPrimary">#64283F</item>
+        <item name="android:textColorSecondary">#835E6E</item>
+    </style>
+</resources>
